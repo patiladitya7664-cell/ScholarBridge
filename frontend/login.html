@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Login | ScholarBridge AI</title>
+
+<meta
+    name="description"
+    content="Sign in to ScholarBridge AI to discover scholarships, manage applications, organize documents and track important deadlines."
+>
+
+<meta name="theme-color" content="#2563EB">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
+
+<!-- Login Stylesheet -->
+<link rel="stylesheet" href="css/login.css">
+
+
+</head>
+
+<body>
+
+<!-- ==================== NAVBAR ==================== -->
+
+<header class="auth-navbar">
+
+    <a href="index.html" class="brand" aria-label="ScholarBridge AI Home">
+
+        <span class="brand-icon">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+        </span>
+
+        <span class="brand-name">
+            ScholarBridge <span class="brand-ai">AI</span>
+        </span>
+
+    </a>
+
+    <a href="index.html" class="back-home">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        <span>Back to Home</span>
+    </a>
+
+</header>
+
+
+<!-- ==================== MAIN CONTENT ==================== -->
+
+<main class="auth-container">
+
+    <section class="auth-card" aria-labelledby="authTitle">
+
+        <!-- Dynamic Authentication Icon -->
+
+        <div class="auth-icon" id="authIcon" aria-hidden="true">
+            <i class="fa-solid fa-user-graduate"></i>
+        </div>
+
+
+        <!-- Dynamic Heading -->
+
+        <div class="auth-heading">
+
+            <h1 id="authTitle">Welcome Back!</h1>
+
+            <p id="authDescription">
+                Sign in to discover scholarships and manage
+                your applications.
+            </p>
+
+        </div>
+
+
+        <!-- Form Messages -->
+
+        <div
+            id="loginMessage"
+            class="form-message"
+            role="alert"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- ==================== LOGIN FORM ==================== -->
+
+        <form id="loginForm" novalidate>
+
+            <!-- Email Address -->
+
+            <div class="form-group">
+
+                <label for="email">Email Address</label>
+
+                <div class="input-wrapper">
+
+                    <i
+                        class="fa-regular fa-envelope input-icon"
+                        aria-hidden="true"
+                    ></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        autocomplete="email"
+                        autocapitalize="none"
+                        spellcheck="false"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="form-group">
+
+                <label for="password">Password</label>
+
+                <div class="input-wrapper">
+
+                    <i
+                        class="fa-solid fa-lock input-icon"
+                        aria-hidden="true"
+                    ></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        minlength="8"
+                        maxlength="128"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="togglePassword"
+                        aria-label="Show password"
+                        aria-pressed="false"
+                    >
+                        <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Remember Me / Forgot Password -->
+
+            <div class="form-options">
+
+                <label class="remember-option" for="rememberMe">
+
+                    <input
+                        type="checkbox"
+                        id="rememberMe"
+                        name="rememberMe"
+                    >
+
+                    <span>Remember me</span>
+
+                </label>
+
+                <button
+                    type="button"
+                    id="forgotPassword"
+                    class="forgot-link"
+                >
+                    Forgot password?
+                </button>
+
+            </div>
+
+
+            <!-- Submit Login -->
+
+            <button
+                type="submit"
+                class="auth-button"
+                id="loginButton"
+            >
+                <span>Sign In</span>
+
+                <i
+                    class="fa-solid fa-arrow-right"
+                    aria-hidden="true"
+                ></i>
+            </button>
+
+        </form>
+
+
+        <!-- ==================== FORGOT PASSWORD ==================== -->
+
+        <section id="forgotPasswordSection" hidden>
+
+            <div class="reset-icon" aria-hidden="true">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <h2>Forgot Password?</h2>
+
+            <p class="reset-description">
+                Enter your registered email address to request
+                a password reset OTP.
+            </p>
+
+
+            <form id="forgotPasswordForm" novalidate>
+
+                <div class="form-group">
+
+                    <label for="resetEmail">Email Address</label>
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="fa-regular fa-envelope input-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                        <input
+                            type="email"
+                            id="resetEmail"
+                            name="resetEmail"
+                            placeholder="Enter your registered email"
+                            autocomplete="email"
+                            autocapitalize="none"
+                            spellcheck="false"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                    id="sendResetOtpButton"
+                >
+                    <span>Send Reset OTP</span>
+
+                    <i
+                        class="fa-solid fa-paper-plane"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+            </form>
+
+
+            <button
+                type="button"
+                class="back-login-button"
+                id="backToLoginFromForgot"
+            >
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Back to Login
+            </button>
+
+        </section>
+
+
+        <!-- ==================== VERIFY RESET OTP ==================== -->
+
+        <section id="resetOtpSection" hidden>
+
+            <div class="reset-icon" aria-hidden="true">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h2>Verify Reset OTP</h2>
+
+            <p class="reset-description">
+                Enter the 6-digit verification code sent to
+                <strong id="resetOtpEmailDisplay"></strong>.
+            </p>
+
+
+            <form id="resetOtpForm" novalidate>
+
+                <div class="form-group">
+
+                    <label for="resetOtp">6-Digit OTP</label>
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="fa-solid fa-key input-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                        <input
+                            type="text"
+                            id="resetOtp"
+                            name="resetOtp"
+                            placeholder="Enter 6-digit OTP"
+                            inputmode="numeric"
+                            autocomplete="one-time-code"
+                            pattern="[0-9]{6}"
+                            minlength="6"
+                            maxlength="6"
+                            aria-describedby="resetOtpHint"
+                            required
+                        >
+
+                    </div>
+
+                    <small class="field-hint" id="resetOtpHint">
+                        Enter the code before it expires.
+                    </small>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                    id="verifyResetOtpButton"
+                >
+                    <span>Verify OTP</span>
+
+                    <i
+                        class="fa-solid fa-check"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+            </form>
+
+
+            <!-- Resend OTP -->
+
+            <div class="otp-resend-wrapper">
+
+                <p>Didn't receive the code?</p>
+
+                <button
+                    type="button"
+                    id="resendResetOtpButton"
+                    disabled
+                >
+                    Resend OTP in
+                    <span id="resetResendCountdown">60</span>s
+                </button>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="back-login-button"
+                id="backToForgotPassword"
+            >
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Back
+            </button>
+
+        </section>
+
+
+        <!-- ==================== NEW PASSWORD ==================== -->
+
+        <section id="newPasswordSection" hidden>
+
+            <div class="reset-icon" aria-hidden="true">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <h2>Create New Password</h2>
+
+            <p class="reset-description">
+                Choose a strong password to secure your account.
+            </p>
+
+
+            <form id="newPasswordForm" novalidate>
+
+                <!-- New Password -->
+
+                <div class="form-group">
+
+                    <label for="newPassword">New Password</label>
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="fa-solid fa-lock input-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                        <input
+                            type="password"
+                            id="newPassword"
+                            name="newPassword"
+                            placeholder="Minimum 8 characters"
+                            minlength="8"
+                            maxlength="128"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="newPassword"
+                            aria-label="Show password"
+                            aria-pressed="false"
+                        >
+                            <i
+                                class="fa-regular fa-eye"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Confirm New Password -->
+
+                <div class="form-group">
+
+                    <label for="confirmNewPassword">
+                        Confirm New Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="fa-solid fa-lock input-icon"
+                            aria-hidden="true"
+                        ></i>
+
+                        <input
+                            type="password"
+                            id="confirmNewPassword"
+                            name="confirmNewPassword"
+                            placeholder="Re-enter your new password"
+                            minlength="8"
+                            maxlength="128"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="confirmNewPassword"
+                            aria-label="Show password"
+                            aria-pressed="false"
+                        >
+                            <i
+                                class="fa-regular fa-eye"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Reset Password -->
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                    id="resetPasswordButton"
+                >
+                    <span>Reset Password</span>
+
+                    <i
+                        class="fa-solid fa-check-circle"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+            </form>
+
+
+            <button
+                type="button"
+                class="back-login-button"
+                id="backToResetOtp"
+            >
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Back to OTP
+            </button>
+
+        </section>
+
+
+        <!-- ==================== AUTH FOOTER LINKS ==================== -->
+
+        <div class="auth-divider" id="authDivider">
+            <span>OR</span>
+        </div>
+
+
+        <p class="auth-switch" id="authSwitch">
+            Don't have an account?
+            <a href="register.html">Create Account</a>
+        </p>
+
+
+        <!-- Security Note -->
+
+        <div class="security-note">
+
+            <i
+                class="fa-solid fa-shield-halved"
+                aria-hidden="true"
+            ></i>
+
+            <span>Your educational journey starts here.</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== PAGE FOOTER ==================== -->
+
+    <footer class="auth-footer">
+
+        <p>
+            &copy; <span id="currentYear"></span>
+            ScholarBridge AI. All rights reserved.
+        </p>
+
+        <p>
+            Empowering students through opportunities.
+        </p>
+
+    </footer>
+
+</main>
+
+
+<!-- LOGIN JAVASCRIPT -->
+
+<script src="js/login.js"></script>
+
+
+</body>
+
+</html>

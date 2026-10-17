@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Document Locker | ScholarBridge AI</title>
+
+<meta
+    name="description"
+    content="Organize, upload, and manage your educational documents for scholarship applications with ScholarBridge AI."
+>
+
+<meta name="theme-color" content="#2563EB">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<!-- Global Styles -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Document Locker Styles -->
+<link rel="stylesheet" href="css/document-locker.css">
+
+<!-- Responsive Styles -->
+<link rel="stylesheet" href="css/responsive.css">
+
+
+</head>
+
+<body>
+
+
+    <!-- =====================================================
+     SCHOLARBRIDGE AI — SHARED RESPONSIVE HEADER
+====================================================== -->
+
+    <header class="app-header page-header" id="appHeader">
+      <!-- BRAND LOGO -->
+      <a
+        href="dashboard.html"
+        class="brand"
+        aria-label="ScholarBridge AI Dashboard"
+      >
+        <span class="brand-icon" aria-hidden="true">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </span>
+
+        <span class="brand-text"> ScholarBridge <span>AI</span> </span>
+      </a>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="headerNav"
+      >
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <!-- MAIN NAVIGATION -->
+      <nav class="header-nav" id="headerNav" aria-label="Main navigation">
+        <!-- DASHBOARD -->
+        <a href="dashboard.html" class="nav-link " aria-current="page">
+          <i class="fa-solid fa-house" aria-hidden="true"></i>
+          <span>Dashboard</span>
+        </a>
+
+        <!-- SCHOLARSHIPS -->
+        <a href="scholarships.html" class="nav-link">
+          <i class="fa-solid fa-award" aria-hidden="true"></i>
+          <span>Scholarships</span>
+        </a>
+
+        <!-- APPLICATIONS -->
+        <a href="applications.html" class="nav-link">
+          <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+          <span>Applications</span>
+        </a>
+
+        <!-- DEADLINES -->
+        <a href="deadlines.html" class="nav-link">
+          <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+          <span>Deadlines</span>
+        </a>
+
+        <!-- DOCUMENT LOCKER -->
+        <a href="document-locker.html" class="nav-link active">
+          <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+          <span>Document Locker</span>
+        </a>
+      </nav>
+
+      <!-- HEADER ACTIONS -->
+      <div class="header-actions">
+
+    <a
+        href="profile.html"
+        class="profile-link"
+        aria-label="Open my profile"
+        title="My Profile"
+    >
+        <span class="header-avatar" id="headerAvatar">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+        </span>
+    </a>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-controls="headerNav"
+        aria-expanded="false"
+    >
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+
+</div>
+    </header>
+<!-- ================= END HEADER ================= -->
+
+
+<!-- Mobile Navigation Overlay -->
+<div
+    class="navigation-overlay"
+    id="navigationOverlay"
+    aria-hidden="true"
+></div>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+<main class="document-locker-page">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="document-hero">
+
+        <div class="document-hero-content">
+
+            <span class="document-hero-label">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                YOUR DOCUMENT SPACE
+            </span>
+
+            <h1>
+                Document
+                <span>Locker</span>
+            </h1>
+
+            <p>
+                Keep your important educational documents organized
+                and ready for your scholarship applications.
+            </p>
+
+            <a href="#uploadSection" class="upload-hero-button">
+                <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                Upload a Document
+            </a>
+
+        </div>
+
+
+        <div class="document-hero-icon" aria-hidden="true">
+            <i class="fa-solid fa-folder-open"></i>
+        </div>
+
+    </section>
+    <!-- ================= END HERO SECTION ================= -->
+
+
+    <!-- ================= DOCUMENT STATISTICS ================= -->
+    <section
+        class="document-stats"
+        aria-label="Document statistics"
+    >
+
+        <!-- Total Documents -->
+        <article class="document-stat-card">
+
+            <div
+                class="document-stat-icon total-documents-icon"
+                aria-hidden="true"
+            >
+                <i class="fa-solid fa-folder"></i>
+            </div>
+
+            <div class="document-stat-content">
+                <p>Total Documents</p>
+                <h2 id="totalDocuments">0</h2>
+                <span>Documents in your locker</span>
+            </div>
+
+        </article>
+
+
+        <!-- Verified Documents -->
+        <article class="document-stat-card">
+
+            <div
+                class="document-stat-icon verified-documents-icon"
+                aria-hidden="true"
+            >
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="document-stat-content">
+                <p>Verified Documents</p>
+                <h2 id="verifiedDocuments">0</h2>
+                <span>Verified document records</span>
+            </div>
+
+        </article>
+
+
+        <!-- Pending Documents -->
+        <article class="document-stat-card">
+
+            <div
+                class="document-stat-icon pending-documents-icon"
+                aria-hidden="true"
+            >
+                <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <div class="document-stat-content">
+                <p>Pending Verification</p>
+                <h2 id="pendingDocuments">0</h2>
+                <span>Awaiting verification</span>
+            </div>
+
+        </article>
+
+    </section>
+    <!-- ================= END STATISTICS ================= -->
+
+
+    <!-- ================= UPLOAD SECTION ================= -->
+    <section
+        class="document-upload-section"
+        id="uploadSection"
+    >
+
+        <div class="document-section-heading">
+
+            <div>
+                <span class="document-section-label">
+                    ADD DOCUMENTS
+                </span>
+
+                <h2>Upload Your Documents</h2>
+
+                <p>
+                    Select a document type, enter its details,
+                    and choose a file to upload.
+                </p>
+            </div>
+
+            <div class="upload-heading-icon" aria-hidden="true">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+
+        </div>
+
+
+        <!-- Document Upload Form -->
+        <form id="documentUploadForm" enctype="multipart/form-data">
+
+            <!-- Document Type -->
+            <div class="document-form-group">
+
+                <label for="documentType">
+                    Document Type
+                    <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+
+                <select
+                    id="documentType"
+                    name="documentType"
+                    required
+                >
+                    <option value="">Select document type</option>
+                    <option value="aadhaar">Aadhaar Card</option>
+                    <option value="income">Income Certificate</option>
+                    <option value="caste">Caste Certificate</option>
+                    <option value="domicile">Domicile Certificate</option>
+                    <option value="marksheet">Marksheet</option>
+                    <option value="bank">Bank Passbook</option>
+                    <option value="admission">Admission Letter</option>
+                    <option value="photo">Passport Size Photograph</option>
+                    <option value="other">Other Document</option>
+                </select>
+
+            </div>
+
+
+            <!-- Document Name -->
+            <div class="document-form-group">
+
+                <label for="documentTitle">
+                    Document Name
+                    <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="documentTitle"
+                    name="documentTitle"
+                    placeholder="e.g. Class 12 Marksheet"
+                    maxlength="100"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Academic Year -->
+            <div class="document-form-group">
+
+                <label for="documentAcademicYear">
+                    Academic Year
+                </label>
+
+                <select
+                    id="documentAcademicYear"
+                    name="academicYear"
+                >
+                    <option value="">Select academic year</option>
+                    <option value="2024-2025">2024–2025</option>
+                    <option value="2025-2026">2025–2026</option>
+                    <option value="2026-2027">2026–2027</option>
+                    <option value="2027-2028">2027–2028</option>
+                </select>
+
+            </div>
+
+
+            <!-- File Upload -->
+            <div class="document-form-group document-file-group">
+
+                <label for="documentFile">
+                    Choose Document
+                    <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+
+                <label
+                    for="documentFile"
+                    class="document-drop-zone"
+                    id="documentDropZone"
+                >
+
+                    <span class="document-upload-icon" aria-hidden="true">
+                        <i class="fa-solid fa-file-arrow-up"></i>
+                    </span>
+
+                    <strong id="fileUploadTitle">
+                        Click to select a file
+                    </strong>
+
+                    <span id="fileUploadDescription">
+                        PDF, JPG or PNG
+                    </span>
+
+                    <span class="document-file-limit">
+                        Maximum file size: 5 MB
+                    </span>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="documentFile"
+                    name="documentFile"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    aria-describedby="fileUploadDescription"
+                    required
+                    hidden
+                >
+
+            </div>
+
+
+            <!-- Upload Status Message -->
+            <div
+                id="documentUploadMessage"
+                class="document-upload-message"
+                role="status"
+                aria-live="polite"
+                hidden
+            ></div>
+
+
+            <!-- Form Actions -->
+            <div class="document-form-actions">
+
+                <button
+                    type="reset"
+                    class="document-reset-button"
+                    id="resetDocumentForm"
+                >
+                    <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                    Clear Form
+                </button>
+
+                <button
+                    type="submit"
+                    class="document-submit-button"
+                    id="uploadDocumentButton"
+                >
+                    <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                    Add Document
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+    <!-- ================= END UPLOAD SECTION ================= -->
+
+
+    <!-- ================= SAVED DOCUMENTS ================= -->
+    <section class="document-list-section">
+
+        <div class="document-list-heading">
+
+            <div>
+                <span class="document-section-label">
+                    YOUR DOCUMENTS
+                </span>
+
+                <h2>Saved Documents</h2>
+
+                <p>
+                    Search, filter, and manage your saved documents.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Search and Filters -->
+        <div class="document-toolbar">
+
+            <!-- Search -->
+            <div class="document-search">
+
+                <i
+                    class="fa-solid fa-magnifying-glass"
+                    aria-hidden="true"
+                ></i>
+
+                <input
+                    type="search"
+                    id="documentSearch"
+                    placeholder="Search documents..."
+                    aria-label="Search documents"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- Category Filter -->
+            <div class="document-filter">
+
+                <label for="documentCategoryFilter">
+                    Category
+                </label>
+
+                <select id="documentCategoryFilter">
+                    <option value="all">All Documents</option>
+                    <option value="aadhaar">Aadhaar Card</option>
+                    <option value="income">Income Certificate</option>
+                    <option value="caste">Caste Certificate</option>
+                    <option value="domicile">Domicile Certificate</option>
+                    <option value="marksheet">Marksheet</option>
+                    <option value="bank">Bank Passbook</option>
+                    <option value="admission">Admission Letter</option>
+                    <option value="photo">Photograph</option>
+                    <option value="other">Other</option>
+                </select>
+
+            </div>
+
+
+            <!-- Reset Filters -->
+            <button
+                type="button"
+                id="resetDocumentFilters"
+                class="document-filter-reset"
+            >
+                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                Reset Filters
+            </button>
+
+        </div>
+
+
+        <!-- Results Count -->
+        <div class="document-results-heading">
+
+            <div>
+                <h3>All Documents</h3>
+                <p>Your uploaded document collection.</p>
+            </div>
+
+            <span
+                id="documentCount"
+                aria-live="polite"
+            >
+                0 documents
+            </span>
+
+        </div>
+
+
+        <!-- Dynamic Documents Grid -->
+        <div
+            class="documents-grid"
+            id="documentsGrid"
+            aria-live="polite"
+            aria-busy="true"
+        >
+            <!-- Documents are rendered by document-locker.js -->
+        </div>
+
+
+        <!-- Empty State -->
+        <div
+            class="document-empty-state"
+            id="documentEmptyState"
+            hidden
+        >
+
+            <div class="document-empty-icon" aria-hidden="true">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+
+            <h3 id="documentEmptyTitle">
+                Your Document Locker Is Empty
+            </h3>
+
+            <p id="documentEmptyDescription">
+                Upload your first document to start organizing
+                your scholarship application files.
+            </p>
+
+            <a
+                href="#uploadSection"
+                class="document-empty-button"
+            >
+                <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                Upload Your First Document
+            </a>
+
+        </div>
+
+    </section>
+    <!-- ================= END SAVED DOCUMENTS ================= -->
+
+
+    <!-- ================= SECURITY NOTICE ================= -->
+    <section class="document-security-notice">
+
+        <div class="document-security-icon" aria-hidden="true">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <div class="document-security-content">
+
+            <h3>Protect Your Personal Documents</h3>
+
+            <p>
+                Certificates, identity cards, and bank documents may
+                contain sensitive information. Upload them only to
+                trusted services and avoid sharing them publicly.
+            </p>
+
+        </div>
+
+    </section>
+    <!-- ================= END SECURITY NOTICE ================= -->
+
+</main>
+<!-- ================= END MAIN CONTENT ================= -->
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="page-footer">
+
+    <p>
+        &copy; <span id="currentYear"></span>
+        ScholarBridge AI. All rights reserved.
+    </p>
+
+    <p>
+        Bridging students to educational opportunities.
+    </p>
+
+</footer>
+<!-- ================= END FOOTER ================= -->
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="js/services/api.js"></script>
+<script src="js/components/sidebar.js"></script>
+<script src="js/document-locker.js"></script>
+
+
+</body>
+
+</html>

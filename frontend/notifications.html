@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Notifications | ScholarBridge AI</title>
+
+<meta
+    name="description"
+    content="View scholarship updates, application status alerts, important deadlines and reminders on ScholarBridge AI."
+>
+
+<meta name="theme-color" content="#2563EB">
+
+<!-- Main Stylesheets -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/notifications.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
+
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER / NAVIGATION
+========================== -->
+
+<header class="page-header">
+
+    <a href="index.html" class="brand" aria-label="ScholarBridge AI Home">
+
+        <span class="brand-icon">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+        </span>
+
+        <span class="brand-text">
+            ScholarBridge <span>AI</span>
+        </span>
+
+    </a>
+
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="headerNav"
+    >
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+
+
+    <nav class="header-nav" id="headerNav" aria-label="Main navigation">
+
+        <a href="dashboard.html" class="nav-link">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            Dashboard
+        </a>
+
+        <a href="scholarships.html" class="nav-link">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+            Scholarships
+        </a>
+
+        <a href="applications.html" class="nav-link">
+            <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+            Applications
+        </a>
+
+        <a href="deadlines.html" class="nav-link">
+            <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+            Deadlines
+        </a>
+
+        <a
+            href="notifications.html"
+            class="nav-link active"
+            aria-current="page"
+        >
+            <i class="fa-regular fa-bell" aria-hidden="true"></i>
+            Notifications
+        </a>
+
+        <a href="profile.html" class="profile-link nav-link">
+            <i class="fa-regular fa-user" aria-hidden="true"></i>
+            Profile
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- Optional mobile navigation overlay -->
+
+<div
+    class="navigation-overlay"
+    id="navigationOverlay"
+    aria-hidden="true"
+></div>
+
+
+<!-- =========================
+     MAIN CONTENT
+========================== -->
+
+<main class="notifications-page">
+
+    <!-- PAGE INTRODUCTION -->
+
+    <section class="notifications-hero">
+
+        <div class="notifications-hero-content">
+
+            <span class="notifications-eyebrow">
+                <i class="fa-regular fa-bell" aria-hidden="true"></i>
+                YOUR UPDATES
+            </span>
+
+            <h1>Notifications</h1>
+
+            <p>
+                Stay informed about your scholarship applications,
+                upcoming deadlines and important announcements.
+            </p>
+
+            <div class="notification-hero-meta">
+
+                <span
+                    class="notification-live-indicator"
+                    aria-hidden="true"
+                ></span>
+
+                Your scholarship activity, all in one place.
+
+            </div>
+
+        </div>
+
+
+        <div class="notifications-hero-icon" aria-hidden="true">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="hero-notification-dot"></span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         NOTIFICATION STATISTICS
+    ========================== -->
+
+    <section
+        class="notification-stats"
+        aria-label="Notification statistics"
+    >
+
+        <!-- Total -->
+
+        <article class="notification-stat-card">
+
+            <div class="notification-stat-icon total-notification-icon">
+                <i class="fa-regular fa-bell" aria-hidden="true"></i>
+            </div>
+
+            <div class="notification-stat-content">
+                <p>Total Notifications</p>
+                <h2 id="totalNotifications">0</h2>
+            </div>
+
+        </article>
+
+
+        <!-- Unread -->
+
+        <article class="notification-stat-card">
+
+            <div class="notification-stat-icon unread-notification-icon">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </div>
+
+            <div class="notification-stat-content">
+                <p>Unread</p>
+                <h2 id="unreadNotifications">0</h2>
+            </div>
+
+        </article>
+
+
+        <!-- Important -->
+
+        <article class="notification-stat-card">
+
+            <div class="notification-stat-icon important-notification-icon">
+                <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+
+            <div class="notification-stat-content">
+                <p>Important</p>
+                <h2 id="importantNotifications">0</h2>
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- =========================
+         NOTIFICATION PANEL
+    ========================== -->
+
+    <section class="notification-panel" aria-labelledby="notificationPanelTitle">
+
+        <!-- Panel Heading -->
+
+        <div class="notification-panel-heading">
+
+            <div class="notification-panel-title">
+
+                <span class="notification-section-label">
+                    ACTIVITY CENTER
+                </span>
+
+                <h2 id="notificationPanelTitle">Your Updates</h2>
+
+                <p>
+                    Manage your scholarship alerts and reminders.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="mark-all-read-button"
+                id="markAllReadButton"
+            >
+                <i class="fa-solid fa-check-double" aria-hidden="true"></i>
+                Mark all as read
+            </button>
+
+        </div>
+
+
+        <!-- SEARCH / FILTER TOOLBAR -->
+
+        <div class="notification-toolbar">
+
+            <div class="notification-search">
+
+                <i
+                    class="fa-solid fa-magnifying-glass"
+                    aria-hidden="true"
+                ></i>
+
+                <input
+                    type="search"
+                    id="notificationSearch"
+                    name="notificationSearch"
+                    placeholder="Search notifications..."
+                    aria-label="Search notifications"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="notification-filter">
+
+                <label for="notificationFilter">
+                    Filter:
+                </label>
+
+                <select id="notificationFilter" name="notificationFilter">
+
+                    <option value="all">All notifications</option>
+                    <option value="unread">Unread only</option>
+                    <option value="read">Read only</option>
+                    <option value="important">Important</option>
+                    <option value="application">Applications</option>
+                    <option value="deadline">Deadlines</option>
+                    <option value="scholarship">Scholarships</option>
+                    <option value="system">Announcements</option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="clear-notification-filters"
+                id="clearNotificationFilters"
+            >
+                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                Reset Filters
+            </button>
+
+        </div>
+
+
+        <!-- CATEGORY TABS -->
+
+        <div
+            class="notification-tabs"
+            role="group"
+            aria-label="Filter by notification category"
+        >
+
+            <button
+                type="button"
+                class="notification-tab active"
+                data-category="all"
+                aria-pressed="true"
+            >
+                All
+                <span id="allTabCount">0</span>
+            </button>
+
+
+            <button
+                type="button"
+                class="notification-tab"
+                data-category="application"
+                aria-pressed="false"
+            >
+                <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                Applications
+            </button>
+
+
+            <button
+                type="button"
+                class="notification-tab"
+                data-category="deadline"
+                aria-pressed="false"
+            >
+                <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                Deadlines
+            </button>
+
+
+            <button
+                type="button"
+                class="notification-tab"
+                data-category="scholarship"
+                aria-pressed="false"
+            >
+                <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                Scholarships
+            </button>
+
+
+            <button
+                type="button"
+                class="notification-tab"
+                data-category="system"
+                aria-pressed="false"
+            >
+                <i class="fa-solid fa-bullhorn" aria-hidden="true"></i>
+                Announcements
+            </button>
+
+        </div>
+
+
+        <!-- NOTIFICATION LIST HEADING -->
+
+        <div class="notification-list-header">
+
+            <h3>Recent Activity</h3>
+
+            <span id="notificationResultsCount" aria-live="polite">
+                0 notifications
+            </span>
+
+        </div>
+
+
+        <!-- NOTIFICATIONS RENDERED BY JAVASCRIPT -->
+
+        <div
+            id="notificationsList"
+            class="notifications-list"
+            aria-live="polite"
+            aria-relevant="additions text"
+        >
+            <!-- Notification items are rendered by notifications.js -->
+        </div>
+
+
+        <!-- EMPTY STATE -->
+
+        <div
+            id="notificationEmptyState"
+            class="notification-empty-state"
+            hidden
+        >
+
+            <div class="notification-empty-icon" aria-hidden="true">
+                <i class="fa-regular fa-bell-slash"></i>
+            </div>
+
+            <h3 id="notificationEmptyTitle">
+                No notifications found
+            </h3>
+
+            <p id="notificationEmptyDescription">
+                You're all caught up! Check back later for new updates.
+            </p>
+
+            <button
+                type="button"
+                id="resetEmptyNotificationFilters"
+                class="reset-empty-notifications"
+            >
+                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                View All Notifications
+            </button>
+
+        </div>
+
+
+        <!-- DEMO MODE NOTICE -->
+
+        <div class="notification-demo-notice">
+
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+
+            <p>
+                <strong>Demo mode:</strong>
+                If sample notifications are being displayed, they may
+                not represent live account activity. Real-time alerts
+                require the corresponding backend integration.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SCHOLARSHIP QUICK LINKS
+    ========================== -->
+
+    <section class="notification-preferences">
+
+        <div class="notification-preferences-icon" aria-hidden="true">
+            <i class="fa-solid fa-sliders"></i>
+        </div>
+
+        <div class="notification-preferences-content">
+
+            <h2>Stay on Track</h2>
+
+            <p>
+                Visit your dashboard and deadlines page regularly
+                to keep track of your scholarship progress.
+            </p>
+
+        </div>
+
+
+        <div class="notification-preferences-actions">
+
+            <a
+                href="deadlines.html"
+                class="notification-secondary-link"
+            >
+                <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                View Deadlines
+            </a>
+
+            <a
+                href="dashboard.html"
+                class="notification-primary-link"
+            >
+                Dashboard
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer class="page-footer">
+
+    <p>
+        &copy; <span id="currentYear"></span>
+        ScholarBridge AI. Supporting your scholarship journey.
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script src="js/services/api.js"></script>
+<script src="js/components/sidebar.js"></script>
+<script src="js/notifications.js"></script>
+
+
+</body>
+
+</html>

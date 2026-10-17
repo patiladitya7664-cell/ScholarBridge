@@ -1,0 +1,1580 @@
+/* =========================================================
+ScholarBridge AI — RESPONSIVE DESIGN SYSTEM
+File: frontend/css/responsive.css
+
+Theme:
+Primary Blue: #2563EB
+Dark Blue:   #1D4ED8
+Light Blue:  #EFF6FF
+Background:  #F5F7FB
+Font:        Poppins
+
+Responsive breakpoints:
+Large Desktop | 1200px
+Tablet        | 992px
+Small Tablet  | 768px
+Mobile        | 576px
+Small Mobile  | 380px
+========================================================= */
+
+/* =========================================================
+
+1. GLOBAL RESPONSIVE FOUNDATION
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+
+html {
+width: 100%;
+min-width: 320px;
+scroll-behavior: smooth;
+-webkit-text-size-adjust: 100%;
+}
+
+body {
+width: 100%;
+min-width: 320px;
+margin: 0;
+overflow-x: hidden;
+font-family: "Poppins", sans-serif;
+}
+
+img,
+video,
+iframe,
+svg {
+max-width: 100%;
+}
+
+img {
+height: auto;
+}
+
+input,
+select,
+textarea,
+button {
+max-width: 100%;
+font: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+-webkit-tap-highlight-color: transparent;
+}
+
+button,
+select {
+cursor: pointer;
+}
+
+a {
+overflow-wrap: anywhere;
+}
+
+[hidden] {
+display: none !important;
+}
+
+main {
+width: 100%;
+min-width: 0;
+}
+
+section,
+article,
+aside,
+header,
+footer {
+min-width: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+overflow-wrap: break-word;
+}
+
+:focus-visible {
+outline: 3px solid rgba(37, 99, 235, 0.45);
+outline-offset: 3px;
+}
+
+/* =========================================================
+2. COMMON PAGE CONTAINERS
+========================================================= */
+
+.dashboard-page,
+.scholarships-page,
+.applications-page,
+.deadlines-page,
+.document-locker-page,
+.notifications-page,
+.profile-page {
+width: 100%;
+max-width: 1440px;
+margin-right: auto;
+margin-left: auto;
+padding-right: clamp(16px, 3vw, 40px);
+padding-left: clamp(16px, 3vw, 40px);
+}
+
+.page-container,
+.content-container,
+.dashboard-content {
+width: 100%;
+max-width: 1440px;
+margin-right: auto;
+margin-left: auto;
+}
+
+.page-header,
+.site-header,
+.auth-navbar {
+width: 100%;
+}
+
+/* =========================================================
+3. HEADER AND NAVIGATION
+========================================================= */
+
+.page-header {
+position: sticky;
+top: 0;
+z-index: 1000;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+min-height: 72px;
+padding: 12px clamp(16px, 3vw, 40px);
+}
+
+.brand {
+display: inline-flex;
+flex-shrink: 0;
+align-items: center;
+gap: 10px;
+min-width: 0;
+text-decoration: none;
+}
+
+.brand > span,
+.brand-text {
+min-width: 0;
+overflow-wrap: normal;
+}
+
+.header-nav {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: clamp(12px, 2vw, 28px);
+min-width: 0;
+}
+
+.header-nav a,
+.nav-link {
+white-space: nowrap;
+}
+
+.header-actions {
+display: flex;
+flex-shrink: 0;
+align-items: center;
+gap: 12px;
+}
+
+.profile-link {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+white-space: nowrap;
+}
+
+.header-avatar {
+display: inline-flex;
+flex-shrink: 0;
+align-items: center;
+justify-content: center;
+}
+
+.menu-toggle {
+display: none;
+align-items: center;
+justify-content: center;
+width: 44px;
+height: 44px;
+padding: 0;
+border: 1px solid #DBEAFE;
+border-radius: 12px;
+background: #FFFFFF;
+color: #2563EB;
+font-size: 20px;
+}
+
+.navigation-overlay {
+display: none;
+}
+
+/* =========================================================
+4. HERO SECTIONS
+========================================================= */
+
+.scholarship-hero,
+.dashboard-hero,
+.page-hero {
+width: 100%;
+min-width: 0;
+}
+
+.scholarship-hero h1,
+.dashboard-hero h1,
+.page-hero h1 {
+max-width: 100%;
+line-height: 1.25;
+overflow-wrap: break-word;
+}
+
+.scholarship-hero p,
+.dashboard-hero p,
+.page-hero p {
+max-width: 760px;
+line-height: 1.8;
+}
+
+/* =========================================================
+5. SEARCH AND FILTERS
+========================================================= */
+
+.scholarship-search-section,
+.search-section {
+width: 100%;
+min-width: 0;
+}
+
+.search-box {
+display: flex;
+align-items: center;
+width: 100%;
+min-width: 0;
+}
+
+.search-box input {
+flex: 1;
+width: 100%;
+min-width: 0;
+}
+
+.filter-row {
+display: flex;
+flex-wrap: wrap;
+align-items: flex-end;
+gap: 16px;
+width: 100%;
+}
+
+.filter-group {
+flex: 1 1 200px;
+min-width: 0;
+}
+
+.filter-group select,
+.filter-group input {
+width: 100%;
+min-width: 0;
+}
+
+.clear-filters {
+flex-shrink: 0;
+min-height: 44px;
+}
+
+/* =========================================================
+6. RESPONSIVE CARD GRIDS
+========================================================= */
+
+.scholarship-grid,
+.dashboard-grid,
+.stats-grid,
+.features-grid,
+.application-grid,
+.notification-stats,
+.document-grid,
+.deadline-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 22px;
+width: 100%;
+min-width: 0;
+}
+
+.scholarship-card,
+.dashboard-card,
+.stat-card,
+.application-card,
+.notification-card,
+.document-card,
+.deadline-card,
+.feature-card {
+min-width: 0;
+max-width: 100%;
+}
+
+.scholarship-card img,
+.document-card img,
+.application-card img {
+max-width: 100%;
+object-fit: cover;
+}
+
+.results-heading {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+}
+
+.scholarship-count {
+flex-shrink: 0;
+}
+
+/* =========================================================
+7. DASHBOARD LAYOUT
+========================================================= */
+
+.dashboard-layout,
+.dashboard-main-layout {
+display: grid;
+grid-template-columns: minmax(0, 1fr);
+gap: 24px;
+width: 100%;
+min-width: 0;
+}
+
+.dashboard-sidebar,
+.sidebar,
+.dashboard-main,
+.dashboard-content {
+min-width: 0;
+max-width: 100%;
+}
+
+.dashboard-sidebar img,
+.sidebar img,
+.dashboard-content img {
+max-width: 100%;
+}
+
+.dashboard-card,
+.stat-card {
+overflow-wrap: anywhere;
+}
+
+.dashboard-card h2,
+.dashboard-card h3,
+.stat-card h2,
+.stat-card h3 {
+line-height: 1.45;
+}
+
+/* =========================================================
+8. FORMS AND INPUTS
+========================================================= */
+
+form {
+min-width: 0;
+}
+
+.form-group {
+min-width: 0;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+.input-wrapper input,
+.input-wrapper select,
+.input-wrapper textarea {
+width: 100%;
+min-width: 0;
+}
+
+.input-wrapper {
+min-width: 0;
+}
+
+.input-wrapper input {
+flex: 1;
+}
+
+.password-toggle {
+flex-shrink: 0;
+}
+
+.form-actions,
+.profile-form-actions,
+.form-buttons {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: 12px;
+}
+
+.form-actions button,
+.profile-form-actions button,
+.form-buttons button {
+max-width: 100%;
+}
+
+.terms-label {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+}
+
+.terms-label input[type="checkbox"] {
+flex-shrink: 0;
+margin-top: 5px;
+}
+
+.field-hint,
+.error-message,
+.field-error {
+overflow-wrap: anywhere;
+}
+
+/* =========================================================
+9. TABLES — PREVENT PAGE OVERFLOW
+========================================================= */
+
+.table-container,
+.table-responsive,
+.applications-table-wrapper {
+width: 100%;
+max-width: 100%;
+overflow-x: auto;
+overscroll-behavior-x: contain;
+-webkit-overflow-scrolling: touch;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.table-container table,
+.table-responsive table,
+.applications-table-wrapper table {
+min-width: 650px;
+}
+
+th,
+td {
+overflow-wrap: anywhere;
+vertical-align: middle;
+}
+
+/* =========================================================
+10. APPLICATIONS
+========================================================= */
+
+.applications-page,
+.applications-content {
+min-width: 0;
+}
+
+.applications-header,
+.applications-toolbar {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+}
+
+.application-filters {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+min-width: 0;
+}
+
+.application-filters select,
+.application-filters input {
+max-width: 100%;
+}
+
+.application-card {
+overflow-wrap: anywhere;
+}
+
+.application-card .card-actions,
+.application-actions {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+}
+
+/* =========================================================
+11. DOCUMENT LOCKER
+========================================================= */
+
+.document-locker-page,
+.document-locker-content {
+min-width: 0;
+}
+
+.document-upload-area,
+.upload-dropzone {
+width: 100%;
+max-width: 100%;
+}
+
+.document-upload-area *,
+.upload-dropzone * {
+max-width: 100%;
+}
+
+.document-grid {
+grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.document-card {
+overflow-wrap: anywhere;
+}
+
+.document-card .document-actions,
+.document-actions {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+}
+
+.document-card button,
+.document-actions button {
+max-width: 100%;
+}
+
+/* =========================================================
+12. DEADLINES
+========================================================= */
+
+.deadlines-page {
+min-width: 0;
+}
+
+.deadline-list,
+.deadline-timeline {
+width: 100%;
+min-width: 0;
+}
+
+.deadline-item,
+.deadline-card {
+min-width: 0;
+overflow-wrap: anywhere;
+}
+
+.deadline-item {
+display: flex;
+align-items: flex-start;
+gap: 16px;
+}
+
+.deadline-item > * {
+min-width: 0;
+}
+
+.deadline-date {
+flex-shrink: 0;
+}
+
+/* =========================================================
+13. NOTIFICATIONS
+========================================================= */
+
+.notifications-page {
+min-width: 0;
+}
+
+.notification-filters,
+.notification-toolbar,
+.notification-tabs {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: 12px;
+}
+
+.notification-filters input,
+.notification-filters select {
+max-width: 100%;
+}
+
+.notifications-list {
+width: 100%;
+min-width: 0;
+}
+
+.notification-card {
+display: flex;
+align-items: flex-start;
+gap: 16px;
+overflow-wrap: anywhere;
+}
+
+.notification-card > * {
+min-width: 0;
+}
+
+.notification-card .notification-actions {
+flex-shrink: 0;
+}
+
+/* =========================================================
+14. PROFILE PAGE
+========================================================= */
+
+.profile-layout {
+display: grid;
+grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+align-items: start;
+gap: 24px;
+width: 100%;
+min-width: 0;
+}
+
+.profile-sidebar,
+.profile-content,
+.profile-main,
+.profile-overview {
+min-width: 0;
+max-width: 100%;
+}
+
+.profile-overview {
+overflow-wrap: anywhere;
+}
+
+.profile-avatar,
+.profile-photo,
+.profile-photo-preview {
+flex-shrink: 0;
+}
+
+.profile-form-grid,
+.profile-fields {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 18px;
+width: 100%;
+}
+
+.profile-form-grid .form-group,
+.profile-fields .form-group {
+min-width: 0;
+}
+
+.profile-form-grid .full-width,
+.profile-fields .full-width {
+grid-column: 1 / -1;
+}
+
+.profile-section {
+min-width: 0;
+scroll-margin-top: 100px;
+}
+
+/* =========================================================
+15. AUTHENTICATION PAGES
+========================================================= */
+
+.auth-navbar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+}
+
+.auth-container {
+width: 100%;
+min-width: 0;
+padding-right: 16px;
+padding-left: 16px;
+}
+
+.auth-card {
+width: 100%;
+max-width: 100%;
+min-width: 0;
+}
+
+.auth-heading h1 {
+overflow-wrap: break-word;
+}
+
+.auth-heading p {
+line-height: 1.8;
+}
+
+.auth-card .auth-button {
+width: 100%;
+}
+
+.otp-description {
+overflow-wrap: anywhere;
+}
+
+.otp-resend-wrapper {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+gap: 8px;
+}
+
+/* =========================================================
+16. FOOTER
+========================================================= */
+
+.page-footer,
+.site-footer,
+.auth-footer {
+width: 100%;
+min-width: 0;
+text-align: center;
+}
+
+.page-footer p,
+.site-footer p,
+.auth-footer p {
+max-width: 100%;
+overflow-wrap: anywhere;
+}
+
+/* =========================================================
+17. LARGE DESKTOP — 1200px
+========================================================= */
+
+@media (max-width: 1200px) {
+
+
+.page-header {
+    gap: 16px;
+}
+
+.header-nav {
+    gap: 14px;
+}
+
+.header-nav a,
+.nav-link {
+    font-size: 13px;
+}
+
+.scholarship-grid,
+.dashboard-grid,
+.stats-grid,
+.features-grid,
+.document-grid,
+.deadline-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.profile-layout {
+    grid-template-columns: minmax(200px, 250px) minmax(0, 1fr);
+    gap: 20px;
+}
+
+}
+
+/* =========================================================
+18. TABLETS AND SMALL LAPTOPS — 992px
+========================================================= */
+
+@media (max-width: 992px) {
+
+
+.page-header {
+    min-height: 68px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.brand {
+    gap: 8px;
+}
+
+.brand-text {
+    font-size: 19px;
+}
+
+/*
+   Mobile navigation panel.
+   sidebar.js should toggle .active on #headerNav
+   and .active on #navigationOverlay.
+*/
+
+.menu-toggle {
+    display: inline-flex;
+}
+
+.header-nav {
+    position: fixed;
+    top: 68px;
+    right: 0;
+    bottom: 0;
+    z-index: 1100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 8px;
+
+    width: min(320px, 86vw);
+    height: calc(100dvh - 68px);
+    padding: 24px 18px;
+
+    overflow-y: auto;
+
+    background: #FFFFFF;
+    border-left: 1px solid #E5E7EB;
+    box-shadow: -12px 12px 30px rgba(15, 23, 42, 0.10);
+
+    transform: translateX(105%);
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.header-nav.active {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.header-nav a,
+.header-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 13px 14px;
+    white-space: normal;
+    border-radius: 10px;
+}
+
+.navigation-overlay {
+    position: fixed;
+    inset: 68px 0 0;
+    z-index: 1050;
+
+    display: block;
+
+    background: rgba(15, 23, 42, 0.38);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.navigation-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.scholarship-grid,
+.dashboard-grid,
+.stats-grid,
+.features-grid,
+.document-grid,
+.deadline-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.profile-layout {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.profile-sidebar {
+    width: 100%;
+}
+
+.dashboard-layout,
+.dashboard-main-layout {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.dashboard-sidebar,
+.sidebar {
+    width: 100%;
+    max-width: 100%;
+}
+
+
+}
+
+/* =========================================================
+19. TABLETS — 768px
+========================================================= */
+
+@media (max-width: 768px) {
+
+
+.page-header {
+    min-height: 64px;
+    gap: 10px;
+    padding: 10px 16px;
+}
+
+.brand {
+    font-size: 18px;
+}
+
+.brand > i {
+    font-size: 22px;
+}
+
+.brand-text {
+    font-size: 18px;
+}
+
+.header-actions {
+    gap: 8px;
+}
+
+.profile-link {
+    gap: 6px;
+}
+
+.profile-link-text {
+    display: none;
+}
+
+.header-avatar {
+    width: 38px;
+    height: 38px;
+}
+
+.header-nav {
+    top: 64px;
+    height: calc(100dvh - 64px);
+}
+
+.navigation-overlay {
+    top: 64px;
+}
+
+.scholarships-page,
+.applications-page,
+.deadlines-page,
+.document-locker-page,
+.notifications-page,
+.profile-page,
+.dashboard-page {
+    padding-right: 18px;
+    padding-left: 18px;
+}
+
+.scholarship-hero h1,
+.dashboard-hero h1,
+.page-hero h1 {
+    font-size: clamp(28px, 5vw, 40px);
+}
+
+.scholarship-hero p,
+.dashboard-hero p,
+.page-hero p {
+    font-size: 14px;
+}
+
+.scholarship-grid,
+.dashboard-grid,
+.stats-grid,
+.features-grid,
+.document-grid,
+.deadline-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.filter-row {
+    align-items: stretch;
+    gap: 12px;
+}
+
+.filter-group {
+    flex: 1 1 calc(50% - 12px);
+}
+
+.clear-filters {
+    width: 100%;
+}
+
+.results-heading {
+    align-items: flex-start;
+}
+
+.results-heading h2 {
+    font-size: 22px;
+}
+
+.profile-form-grid,
+.profile-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.applications-header,
+.applications-toolbar {
+    align-items: flex-start;
+}
+
+.notification-card {
+    gap: 12px;
+}
+
+.auth-navbar {
+    padding: 14px 18px;
+}
+
+
+}
+
+/* =========================================================
+20. MOBILE — 576px
+========================================================= */
+
+@media (max-width: 576px) {
+
+
+body {
+    font-size: 14px;
+}
+
+.page-header {
+    min-height: 60px;
+    padding: 9px 14px;
+}
+
+.brand {
+    gap: 7px;
+    font-size: 16px;
+}
+
+.brand > i {
+    font-size: 20px;
+}
+
+.brand-text {
+    font-size: 16px;
+}
+
+.header-actions {
+    gap: 6px;
+}
+
+.header-avatar {
+    width: 34px;
+    height: 34px;
+}
+
+.menu-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.header-nav {
+    top: 60px;
+    width: min(300px, 88vw);
+    height: calc(100dvh - 60px);
+    padding: 20px 14px;
+}
+
+.navigation-overlay {
+    top: 60px;
+}
+
+.scholarships-page,
+.applications-page,
+.deadlines-page,
+.document-locker-page,
+.notifications-page,
+.profile-page,
+.dashboard-page {
+    padding-right: 14px;
+    padding-left: 14px;
+}
+
+.scholarship-hero,
+.dashboard-hero,
+.page-hero {
+    padding-top: 26px;
+    padding-bottom: 26px;
+}
+
+.scholarship-hero h1,
+.dashboard-hero h1,
+.page-hero h1 {
+    font-size: clamp(25px, 7vw, 34px);
+    line-height: 1.3;
+}
+
+.scholarship-hero p,
+.dashboard-hero p,
+.page-hero p {
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.hero-label {
+    max-width: 100%;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    overflow-wrap: anywhere;
+}
+
+.scholarship-search-section,
+.search-section {
+    padding: 16px;
+}
+
+.search-box {
+    gap: 10px;
+}
+
+.search-box input {
+    font-size: 13px;
+}
+
+.filter-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.filter-group {
+    flex: 1 1 auto;
+    width: 100%;
+}
+
+.filter-group label {
+    font-size: 12px;
+}
+
+.filter-group select,
+.filter-group input {
+    min-height: 44px;
+    font-size: 13px;
+}
+
+.clear-filters {
+    width: 100%;
+    min-height: 44px;
+}
+
+.results-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.results-heading h2 {
+    font-size: 20px;
+}
+
+.results-heading p {
+    font-size: 12px;
+}
+
+.scholarship-count {
+    align-self: flex-start;
+}
+
+/*
+   Two cards per row on most phones.
+   The minimum width prevents cards becoming too narrow.
+*/
+
+.scholarship-grid,
+.dashboard-grid,
+.stats-grid,
+.features-grid,
+.document-grid,
+.deadline-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.scholarship-card,
+.dashboard-card,
+.stat-card,
+.application-card,
+.document-card,
+.deadline-card,
+.feature-card {
+    border-radius: 14px;
+}
+
+.scholarship-card h3,
+.dashboard-card h3,
+.document-card h3,
+.deadline-card h3 {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.scholarship-card p,
+.dashboard-card p,
+.document-card p,
+.deadline-card p {
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.scholarship-card button,
+.scholarship-card .btn,
+.dashboard-card button,
+.dashboard-card .btn {
+    max-width: 100%;
+    font-size: 11px;
+}
+
+.empty-state {
+    padding: 28px 16px;
+}
+
+.empty-state h3 {
+    font-size: 18px;
+}
+
+.empty-state p {
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.profile-form-grid,
+.profile-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+}
+
+.profile-form-grid .full-width,
+.profile-fields .full-width {
+    grid-column: auto;
+}
+
+.profile-overview {
+    padding: 18px;
+}
+
+.profile-section {
+    padding: 18px;
+}
+
+.profile-form-actions,
+.form-actions,
+.form-buttons {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.profile-form-actions button,
+.form-actions button,
+.form-buttons button {
+    width: 100%;
+}
+
+.application-filters {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.application-filters select,
+.application-filters input,
+.application-filters button {
+    width: 100%;
+}
+
+.notification-filters,
+.notification-toolbar {
+    align-items: stretch;
+}
+
+.notification-filters input,
+.notification-filters select,
+.notification-filters button,
+.notification-toolbar button {
+    width: 100%;
+}
+
+.notification-card {
+    padding: 14px;
+}
+
+.deadline-item {
+    gap: 10px;
+}
+
+.page-footer,
+.site-footer {
+    padding-right: 14px;
+    padding-left: 14px;
+}
+
+.page-footer p,
+.site-footer p {
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.auth-navbar {
+    padding: 12px 14px;
+}
+
+.auth-navbar .brand {
+    font-size: 15px;
+}
+
+.back-home {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.auth-container {
+    padding: 24px 14px;
+}
+
+.auth-card {
+    padding: 24px 18px;
+    border-radius: 18px;
+}
+
+.auth-heading h1 {
+    font-size: 25px;
+}
+
+.auth-heading p {
+    font-size: 13px;
+}
+
+.auth-footer {
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+
+}
+
+/* =========================================================
+21. SMALL MOBILE — 380px
+========================================================= */
+
+@media (max-width: 380px) {
+
+
+.page-header {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.brand {
+    gap: 5px;
+    font-size: 14px;
+}
+
+.brand > i {
+    font-size: 18px;
+}
+
+.brand-text {
+    font-size: 14px;
+}
+
+.header-actions {
+    gap: 4px;
+}
+
+.menu-toggle {
+    width: 36px;
+    height: 36px;
+}
+
+.header-avatar {
+    width: 30px;
+    height: 30px;
+}
+
+.scholarships-page,
+.applications-page,
+.deadlines-page,
+.document-locker-page,
+.notifications-page,
+.profile-page,
+.dashboard-page {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.scholarship-hero h1,
+.dashboard-hero h1,
+.page-hero h1 {
+    font-size: 25px;
+}
+
+.scholarship-grid,
+.dashboard-grid,
+.stats-grid,
+.features-grid,
+.document-grid,
+.deadline-grid {
+    gap: 9px;
+}
+
+.scholarship-card,
+.dashboard-card,
+.stat-card,
+.document-card,
+.deadline-card,
+.feature-card {
+    border-radius: 12px;
+}
+
+.auth-navbar {
+    gap: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.auth-navbar .brand {
+    font-size: 13px;
+}
+
+.back-home {
+    gap: 4px;
+    font-size: 11px;
+}
+
+.auth-container {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.auth-card {
+    padding: 20px 14px;
+}
+
+}
+
+/* =========================================================
+22. LANDSCAPE MOBILE
+========================================================= */
+
+@media (max-width: 992px) and (orientation: landscape) {
+
+
+.header-nav {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.header-nav a,
+.header-nav .nav-link {
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+
+}
+
+/* =========================================================
+23. ACCESSIBILITY — REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+
+html {
+    scroll-behavior: auto;
+}
+
+*,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+
+}
+
+/* =========================================================
+24. PRINT
+========================================================= */
+
+@media print {
+
+
+.page-header,
+.header-nav,
+.header-actions,
+.menu-toggle,
+.navigation-overlay,
+.clear-filters,
+.auth-navbar,
+.page-footer,
+.site-footer {
+    display: none !important;
+}
+
+body {
+    overflow: visible;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+.scholarships-page,
+.applications-page,
+.deadlines-page,
+.document-locker-page,
+.notifications-page,
+.profile-page,
+.dashboard-page {
+    max-width: none;
+    padding: 0;
+}
+
+.scholarship-grid,
+.dashboard-grid,
+.stats-grid,
+.document-grid,
+.deadline-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+
+}

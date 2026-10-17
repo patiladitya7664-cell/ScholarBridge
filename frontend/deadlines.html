@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Scholarship Deadlines | ScholarBridge AI</title>
+
+<meta
+    name="description"
+    content="Track scholarship deadlines, upcoming application dates, and important scholarship opportunities with ScholarBridge AI."
+>
+
+<meta name="theme-color" content="#2563EB">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<!-- Global Styles -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Deadlines Page Styles -->
+<link rel="stylesheet" href="css/deadlines.css">
+
+<!-- Responsive Styles -->
+<link rel="stylesheet" href="css/responsive.css">
+
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     SCHOLARBRIDGE AI — SHARED RESPONSIVE HEADER
+====================================================== -->
+
+    <header class="app-header page-header" id="appHeader">
+      <!-- BRAND LOGO -->
+      <a
+        href="dashboard.html"
+        class="brand"
+        aria-label="ScholarBridge AI Dashboard"
+      >
+        <span class="brand-icon" aria-hidden="true">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </span>
+
+        <span class="brand-text"> ScholarBridge <span>AI</span> </span>
+      </a>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="headerNav"
+      >
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <!-- MAIN NAVIGATION -->
+      <nav class="header-nav" id="headerNav" aria-label="Main navigation">
+        <!-- DASHBOARD -->
+        <a href="dashboard.html" class="nav-link active" aria-current="page">
+          <i class="fa-solid fa-house" aria-hidden="true"></i>
+          <span>Dashboard</span>
+        </a>
+
+        <!-- SCHOLARSHIPS -->
+        <a href="scholarships.html" class="nav-link">
+          <i class="fa-solid fa-award" aria-hidden="true"></i>
+          <span>Scholarships</span>
+        </a>
+
+        <!-- APPLICATIONS -->
+        <a href="applications.html" class="nav-link">
+          <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+          <span>Applications</span>
+        </a>
+
+        <!-- DEADLINES -->
+        <a href="deadlines.html" class="nav-link">
+          <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+          <span>Deadlines</span>
+        </a>
+
+        <!-- DOCUMENT LOCKER -->
+        <a href="document-locker.html" class="nav-link">
+          <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+          <span>Document Locker</span>
+        </a>
+      </nav>
+
+      <!-- HEADER ACTIONS -->
+      <div class="header-actions">
+
+    <a
+        href="profile.html"
+        class="profile-link"
+        aria-label="Open my profile"
+        title="My Profile"
+    >
+        <span class="header-avatar" id="headerAvatar">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+        </span>
+    </a>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-controls="headerNav"
+        aria-expanded="false"
+    >
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+
+</div>
+    </header>
+
+
+<!-- MOBILE NAVIGATION OVERLAY -->
+<div
+    class="navigation-overlay"
+    id="navigationOverlay"
+    aria-hidden="true"
+></div>
+
+<!-- =====================================================
+     END SHARED HEADER
+====================================================== -->
+<!-- ================= END HEADER ================= -->
+
+
+<!-- Mobile Navigation Overlay -->
+<div
+    class="navigation-overlay"
+    id="navigationOverlay"
+    aria-hidden="true"
+></div>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+<main class="deadlines-page">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="deadlines-hero">
+
+        <div class="deadlines-hero-content">
+
+            <span class="hero-label">
+                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                STAY ON TRACK
+            </span>
+
+            <h1>
+                Never Miss a
+                <span>Scholarship Deadline</span>
+            </h1>
+
+            <p>
+                Keep track of important scholarship dates, upcoming
+                deadlines, and application schedules in one place.
+            </p>
+
+            <a href="scholarships.html" class="explore-button">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                Explore Scholarships
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+
+        </div>
+
+
+        <div class="deadlines-hero-icon" aria-hidden="true">
+            <i class="fa-solid fa-calendar-check"></i>
+        </div>
+
+    </section>
+    <!-- ================= END HERO SECTION ================= -->
+
+
+    <!-- ================= DEADLINE STATISTICS ================= -->
+    <section
+        class="deadline-stats"
+        aria-label="Scholarship deadline statistics"
+    >
+
+        <!-- Total Deadlines -->
+        <article class="deadline-stat-card">
+
+            <div
+                class="deadline-stat-icon total-deadlines-icon"
+                aria-hidden="true"
+            >
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
+
+            <div class="deadline-stat-content">
+                <p>Total Deadlines</p>
+                <h2 id="totalDeadlines">0</h2>
+                <span>Tracked scholarships</span>
+            </div>
+
+        </article>
+
+
+        <!-- Upcoming Deadlines -->
+        <article class="deadline-stat-card">
+
+            <div
+                class="deadline-stat-icon upcoming-deadlines-icon"
+                aria-hidden="true"
+            >
+                <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <div class="deadline-stat-content">
+                <p>Upcoming</p>
+                <h2 id="upcomingDeadlines">0</h2>
+                <span>More than 7 days left</span>
+            </div>
+
+        </article>
+
+
+        <!-- Urgent Deadlines -->
+        <article class="deadline-stat-card">
+
+            <div
+                class="deadline-stat-icon urgent-deadlines-icon"
+                aria-hidden="true"
+            >
+                <i class="fa-solid fa-hourglass-half"></i>
+            </div>
+
+            <div class="deadline-stat-content">
+                <p>Closing Soon</p>
+                <h2 id="urgentDeadlines">0</h2>
+                <span>Within the next 7 days</span>
+            </div>
+
+        </article>
+
+
+        <!-- Expired Deadlines -->
+        <article class="deadline-stat-card">
+
+            <div
+                class="deadline-stat-icon expired-deadlines-icon"
+                aria-hidden="true"
+            >
+                <i class="fa-solid fa-calendar-xmark"></i>
+            </div>
+
+            <div class="deadline-stat-content">
+                <p>Expired</p>
+                <h2 id="expiredDeadlines">0</h2>
+                <span>Past the deadline</span>
+            </div>
+
+        </article>
+
+    </section>
+    <!-- ================= END STATISTICS ================= -->
+
+
+    <!-- ================= DEADLINE LIST SECTION ================= -->
+    <section class="deadline-section">
+
+        <!-- Section Heading -->
+        <div class="deadline-section-header">
+
+            <div>
+                <span class="section-label">YOUR SCHEDULE</span>
+
+                <h2>Scholarship Deadlines</h2>
+
+                <p>
+                    Review closing dates and plan your applications ahead of time.
+                </p>
+            </div>
+
+
+            <!-- Deadline View -->
+            <div class="deadline-view-control">
+
+                <label for="deadlineView">
+                    View:
+                </label>
+
+                <select id="deadlineView">
+                    <option value="all">All Deadlines</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="urgent">Closing Soon</option>
+                    <option value="expired">Expired</option>
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SEARCH & FILTERS ================= -->
+        <div class="deadline-filters">
+
+            <!-- Search -->
+            <div class="deadline-search">
+
+                <i
+                    class="fa-solid fa-magnifying-glass"
+                    aria-hidden="true"
+                ></i>
+
+                <input
+                    type="search"
+                    id="deadlineSearch"
+                    placeholder="Search scholarships..."
+                    aria-label="Search scholarships by name"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- Sort -->
+            <div class="deadline-sort">
+
+                <label for="deadlineSort">
+                    Sort by:
+                </label>
+
+                <select id="deadlineSort">
+                    <option value="nearest">Nearest Deadline</option>
+                    <option value="latest">Latest Deadline</option>
+                    <option value="name">Scholarship Name</option>
+                </select>
+
+            </div>
+
+
+            <!-- Reset -->
+            <button
+                type="button"
+                id="resetDeadlineFilters"
+                class="reset-deadline-filters"
+            >
+                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                Reset Filters
+            </button>
+
+        </div>
+        <!-- ================= END SEARCH & FILTERS ================= -->
+
+
+        <!-- ================= DEADLINE LEGEND ================= -->
+        <div
+            class="deadline-legend"
+            aria-label="Deadline status legend"
+        >
+
+            <span>
+                <span
+                    class="legend-dot legend-upcoming"
+                    aria-hidden="true"
+                ></span>
+                Upcoming
+            </span>
+
+            <span>
+                <span
+                    class="legend-dot legend-urgent"
+                    aria-hidden="true"
+                ></span>
+                Closing Soon
+            </span>
+
+            <span>
+                <span
+                    class="legend-dot legend-expired"
+                    aria-hidden="true"
+                ></span>
+                Expired
+            </span>
+
+        </div>
+        <!-- ================= END LEGEND ================= -->
+
+
+        <!-- Results Heading -->
+        <div class="deadline-results-header">
+
+            <div>
+                <h3>Deadline List</h3>
+                <p>Keep an eye on important application dates.</p>
+            </div>
+
+            <span
+                id="deadlineCount"
+                aria-live="polite"
+            >
+                0 deadlines
+            </span>
+
+        </div>
+
+
+        <!-- Dynamic Deadline Results -->
+        <div
+            id="deadlinesList"
+            class="deadlines-list"
+            aria-live="polite"
+            aria-busy="true"
+        >
+            <!-- Deadline cards are rendered by deadlines.js -->
+        </div>
+
+
+        <!-- ================= EMPTY STATE ================= -->
+        <div
+            id="deadlinesEmptyState"
+            class="deadlines-empty-state"
+            hidden
+        >
+
+            <div class="empty-state-icon" aria-hidden="true">
+                <i class="fa-regular fa-calendar-xmark"></i>
+            </div>
+
+            <h3>No Deadlines Found</h3>
+
+            <p>
+                There are no deadlines matching your current filters.
+                Try a different search or choose another deadline view.
+            </p>
+
+            <button
+                type="button"
+                id="emptyStateReset"
+                class="reset-deadline-filters"
+            >
+                <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                Clear Filters
+            </button>
+
+        </div>
+        <!-- ================= END EMPTY STATE ================= -->
+
+    </section>
+    <!-- ================= END DEADLINE LIST SECTION ================= -->
+
+
+    <!-- ================= REMINDER SECTION ================= -->
+    <section class="deadline-reminder">
+
+        <div class="reminder-icon" aria-hidden="true">
+            <i class="fa-solid fa-lightbulb"></i>
+        </div>
+
+        <div class="reminder-content">
+
+            <h3>Plan Ahead for Your Applications</h3>
+
+            <p>
+                Always verify the latest deadline, eligibility criteria,
+                and required documents on the official scholarship website
+                before applying.
+            </p>
+
+        </div>
+
+        <a href="scholarships.html" class="reminder-button">
+            Find Scholarships
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+
+    </section>
+    <!-- ================= END REMINDER SECTION ================= -->
+
+</main>
+<!-- ================= END MAIN CONTENT ================= -->
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="page-footer">
+
+    <p>
+        &copy; <span id="currentYear"></span>
+        ScholarBridge AI. All rights reserved.
+    </p>
+
+    <p>
+        Bridging students to educational opportunities.
+    </p>
+
+</footer>
+<!-- ================= END FOOTER ================= -->
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<!-- API Service -->
+<script src="js/services/api.js"></script>
+
+<!-- Shared Navigation -->
+<script src="js/components/sidebar.js"></script>
+
+<!-- Deadlines Functionality -->
+<script src="js/deadlines.js"></script>
+
+<!-- ================= END JAVASCRIPT ================= -->
+
+</body>
+
+</html>

@@ -1,0 +1,565 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Student Dashboard | ScholarBridge AI</title>
+
+    <meta
+      name="description"
+      content="Explore scholarships, track applications, manage documents, and discover opportunities with ScholarBridge AI."
+    />
+
+    <meta name="theme-color" content="#2563EB" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- Dashboard Styles -->
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+
+  <body>
+    <!-- Sidebar / Navigation Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <div
+      class="navigation-overlay"
+      id="navigationOverlay"
+      aria-hidden="true"
+    ></div>
+
+    <!-- =====================================================
+     SCHOLARBRIDGE AI — SHARED RESPONSIVE HEADER
+====================================================== -->
+
+    <header class="app-header page-header" id="appHeader">
+      <!-- BRAND LOGO -->
+      <a
+        href="dashboard.html"
+        class="brand"
+        aria-label="ScholarBridge AI Dashboard"
+      >
+        <span class="brand-icon" aria-hidden="true">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </span>
+
+        <span class="brand-text"> ScholarBridge <span>AI</span> </span>
+      </a>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="headerNav"
+      >
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <!-- MAIN NAVIGATION -->
+      <nav class="header-nav" id="headerNav" aria-label="Main navigation">
+        <!-- DASHBOARD -->
+        <a href="dashboard.html" class="nav-link active" aria-current="page">
+          <i class="fa-solid fa-house" aria-hidden="true"></i>
+          <span>Dashboard</span>
+        </a>
+
+        <!-- SCHOLARSHIPS -->
+        <a href="scholarships.html" class="nav-link">
+          <i class="fa-solid fa-award" aria-hidden="true"></i>
+          <span>Scholarships</span>
+        </a>
+
+        <!-- APPLICATIONS -->
+        <a href="applications.html" class="nav-link">
+          <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+          <span>Applications</span>
+        </a>
+
+        <!-- DEADLINES -->
+        <a href="deadlines.html" class="nav-link">
+          <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+          <span>Deadlines</span>
+        </a>
+
+        <!-- DOCUMENT LOCKER -->
+        <a href="document-locker.html" class="nav-link">
+          <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+          <span>Document Locker</span>
+        </a>
+      </nav>
+
+      <!-- HEADER ACTIONS -->
+      <div class="header-actions">
+
+    <a
+        href="profile.html"
+        class="profile-link"
+        aria-label="Open my profile"
+        title="My Profile"
+    >
+        <span class="header-avatar" id="headerAvatar">
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
+        </span>
+    </a>
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-controls="headerNav"
+        aria-expanded="false"
+    >
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+
+</div>
+    </header>
+
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <div
+      class="navigation-overlay"
+      id="navigationOverlay"
+      aria-hidden="true"
+    ></div>
+
+    <!-- =====================================================
+     END SHARED RESPONSIVE HEADER
+====================================================== -->
+    <!-- ================= END HEADER ================= -->
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="content-wrapper">
+      <!-- ================= DASHBOARD SECTION ================= -->
+      <section class="page-section" id="dashboardSection">
+        <!-- Welcome Banner -->
+        <div class="welcome-row">
+          <div class="welcome-content">
+            <p class="eyebrow">
+              <i class="fa-solid fa-sun" aria-hidden="true"></i>
+              YOUR FUTURE STARTS HERE
+            </p>
+
+            <h1>
+              Welcome back,
+              <span id="welcomeName">Student</span>!
+            </h1>
+
+            <p class="welcome-description">
+              Discover scholarships, organize your applications, and take the
+              next step toward your academic goals.
+            </p>
+
+            <a href="#scholarships" class="btn btn-primary">
+              Explore Scholarships
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="welcome-illustration" aria-hidden="true">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span class="illustration-star star-one">✦</span>
+            <span class="illustration-star star-two">✧</span>
+          </div>
+        </div>
+
+        <!-- ================= STATISTICS ================= -->
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon green">
+              <i class="fa-solid fa-award" aria-hidden="true"></i>
+            </div>
+
+            <div class="stat-content">
+              <p>Available Scholarships</p>
+              <h3 id="availableCount">—</h3>
+              <span class="stat-note"> Opportunities to explore </span>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon blue">
+              <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+            </div>
+
+            <div class="stat-content">
+              <p>Potential Matches</p>
+              <h3 id="matchedCount">—</h3>
+              <span class="stat-note"> Based on your profile </span>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon orange">
+              <i class="fa-solid fa-file-circle-check" aria-hidden="true"></i>
+            </div>
+
+            <div class="stat-content">
+              <p>My Applications</p>
+              <h3 id="applicationCount">0</h3>
+              <span class="stat-note"> Applications tracked </span>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon purple">
+              <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+            </div>
+
+            <div class="stat-content">
+              <p>My Documents</p>
+              <h3 id="documentCount">0</h3>
+              <span class="stat-note"> Documents stored </span>
+            </div>
+          </article>
+        </div>
+        <!-- ================= END STATISTICS ================= -->
+
+        <!-- ================= PROFILE COMPLETION ================= -->
+        <article class="profile-progress-card">
+          <div class="progress-info">
+            <div class="progress-icon">
+              <i class="fa-solid fa-user-check" aria-hidden="true"></i>
+            </div>
+
+            <div>
+              <h3>Complete Your Student Profile</h3>
+
+              <p>
+                Add your student details to help identify scholarships that may
+                match your eligibility.
+              </p>
+            </div>
+          </div>
+
+          <div class="progress-action">
+            <div
+              class="progress-circle"
+              id="progressCircle"
+              role="progressbar"
+              aria-label="Student profile completion"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <span id="profileProgress">0%</span>
+            </div>
+
+            <button class="btn btn-outline" type="button" data-open="profile">
+              Complete Profile
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </article>
+        <!-- ================= END PROFILE COMPLETION ================= -->
+
+        <!-- ================= SCHOLARSHIPS ================= -->
+        <section class="section-block" id="scholarships">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">OPPORTUNITIES FOR YOU</p>
+
+              <h2>Explore Scholarships</h2>
+
+              <p class="section-description">
+                Discover opportunities and review eligibility requirements and
+                official application details.
+              </p>
+            </div>
+
+            <button
+              class="btn btn-outline"
+              id="viewAllScholarships"
+              type="button"
+            >
+              View All
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <!-- Scholarship Filters -->
+          <div class="filter-row">
+            <label class="search-box">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+              <input
+                type="search"
+                id="scholarshipSearch"
+                placeholder="Search scholarships..."
+                aria-label="Search scholarships"
+              />
+            </label>
+
+            <label class="category-filter">
+              <span class="sr-only">Filter by student category</span>
+
+              <select
+                id="scholarshipCategory"
+                aria-label="Filter by student category"
+              >
+                <option value="all">All Categories</option>
+                <option value="ST">ST</option>
+                <option value="SC">SC</option>
+                <option value="OBC">OBC</option>
+                <option value="General">General</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Dynamic Scholarship Cards -->
+          <div class="scholarship-grid" id="scholarshipGrid">
+            <div class="loading-state">
+              <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+              <p>Loading scholarship opportunities...</p>
+            </div>
+          </div>
+
+          <p class="source-disclaimer">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            Always verify eligibility, deadlines, and award amounts on the
+            official scholarship website.
+          </p>
+        </section>
+        <!-- ================= END SCHOLARSHIPS ================= -->
+
+        <!-- ================= DEADLINES & APPLICATIONS ================= -->
+        <div class="bottom-grid">
+          <!-- Upcoming Deadlines -->
+          <section class="panel" id="deadlines">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">STAY PREPARED</p>
+                <h2>Upcoming Deadlines</h2>
+              </div>
+
+              <i
+                class="fa-regular fa-calendar-check panel-heading-icon"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <div id="deadlineList" class="empty-state">
+              <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+
+              <h3>No deadlines available</h3>
+
+              <p>
+                Scholarship deadlines will appear here when verified scholarship
+                data is available.
+              </p>
+            </div>
+          </section>
+
+          <!-- My Applications -->
+          <section class="panel" id="applications">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">YOUR PROGRESS</p>
+                <h2>My Applications</h2>
+              </div>
+
+              <i
+                class="fa-solid fa-file-lines panel-heading-icon"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <div id="applicationList" class="empty-state">
+              <i class="fa-regular fa-folder-open" aria-hidden="true"></i>
+
+              <h3>No applications yet</h3>
+
+              <p>
+                Your submitted and tracked applications will appear here when
+                application data is available.
+              </p>
+            </div>
+          </section>
+        </div>
+        <!-- ================= END DEADLINES & APPLICATIONS ================= -->
+
+        <!-- ================= DOCUMENT LOCKER ================= -->
+        <section class="panel document-panel" id="documents">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">KEEP THINGS ORGANIZED</p>
+              <h2>Document Locker</h2>
+            </div>
+
+            <div class="document-heading-icon">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="document-content">
+            <div class="document-icon-large">
+              <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+            </div>
+
+            <div class="document-text">
+              <h3>Your important documents, organized</h3>
+
+              <p>
+                Keep your certificates and scholarship application files
+                organized in one convenient place.
+              </p>
+            </div>
+
+            <a href="document-locker.html" class="btn btn-outline">
+              Open Document Locker
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </section>
+        <!-- ================= END DOCUMENT LOCKER ================= -->
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="footer">
+          <p>
+            © <span id="footerYear"></span> ScholarBridge AI. Empowering
+            students through opportunities.
+          </p>
+
+          <span>
+            Built for a brighter future
+            <i class="fa-solid fa-heart" aria-hidden="true"></i>
+          </span>
+        </footer>
+        <!-- ================= END FOOTER ================= -->
+      </section>
+      <!-- ================= END DASHBOARD SECTION ================= -->
+
+      <!-- ================= PROFILE SECTION ================= -->
+      <section
+        class="page-section secondary-section"
+        id="profileSection"
+        hidden
+      >
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">YOUR ACCOUNT</p>
+            <h1>My Student Profile</h1>
+
+            <p class="section-description">
+              Review your registered account details.
+            </p>
+          </div>
+        </div>
+
+        <div class="panel profile-panel">
+          <div class="profile-header">
+            <div class="profile-avatar" id="profileAvatar">S</div>
+
+            <div>
+              <h2 id="profileName">Student</h2>
+              <p id="profileEmail">Loading email...</p>
+
+              <span class="profile-badge" id="profileBadge">
+                Student Account
+              </span>
+            </div>
+          </div>
+
+          <div class="profile-details">
+            <div class="detail-item">
+              <span>Full Name</span>
+              <strong id="detailName">—</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Email Address</span>
+              <strong id="detailEmail">—</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Mobile Number</span>
+              <strong id="detailMobile">—</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Student Category</span>
+              <strong id="detailCategory">—</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Account Role</span>
+              <strong id="detailRole">—</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Account Created</span>
+              <strong id="detailCreated">—</strong>
+            </div>
+          </div>
+
+          <p class="profile-security-note">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+            Your password is never displayed on this page.
+          </p>
+        </div>
+      </section>
+      <!-- ================= END PROFILE SECTION ================= -->
+
+      <!-- ================= PLACEHOLDER SECTION ================= -->
+      <section
+        class="page-section secondary-section"
+        id="placeholderSection"
+        hidden
+      >
+        <div class="panel placeholder-panel">
+          <div class="placeholder-icon">
+            <i class="fa-solid fa-person-digging" aria-hidden="true"></i>
+          </div>
+
+          <p class="section-kicker">COMING NEXT</p>
+
+          <h1 id="placeholderTitle">Coming Soon</h1>
+
+          <p id="placeholderDescription">
+            This module will be connected in the next development step.
+          </p>
+
+          <button class="btn btn-primary" id="backToDashboard" type="button">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            Back to Dashboard
+          </button>
+        </div>
+      </section>
+      <!-- ================= END PLACEHOLDER SECTION ================= -->
+    </main>
+    <!-- ================= END MAIN CONTENT ================= -->
+
+    <!-- ================= TOAST NOTIFICATION ================= -->
+    <div
+      class="toast"
+      id="toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <!-- Shared Navigation -->
+    <script src="js/components/sidebar.js"></script>
+    <!-- Dashboard JavaScript -->
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
