@@ -500,24 +500,118 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }
 
+       // -----------------------------------------------------
+    // LOAD APPLICATIONS FROM BACKEND
     // -----------------------------------------------------
-    // INITIAL RENDER
+
+    async function loadMyApplications() {
+        // Clear previous application data before loading.
+        applications = [];
+
+        // Check whether the user is logged in.
+        const token =
+            typeof getApiToken === "function"
+                ? getApiToken()
+                : (
+                    localStorage.getItem("token") ||
+                    localStorage.getItem("scholarBridgeToken") ||
+                    ""
+                );
+
+        if (!token) {
+            updateStatistics();
+
+            showEmptyState(
+                "Login Required",
+                "Please log in to view and track your scholarship applications."
+            );
+
+            if (applicationCount) {
+                applicationCount.textContent = "0 applications";
+            }
+
+            return;
+        }
+
+        // Show a loading message while the API request is running.
+        if (emptyState) {
+            emptyState.hidden = false;
+
+            const heading = emptyState.querySelector("h3");
+            const paragraph = emptyState.querySelector("p");
+
+            if (heading) {
+                heading.textContent = "Loading Applications...";
+            }
+
+            if (paragraph) {
+                paragraph.textContent =
+                    "Please wait while we retrieve your applications.";
+            }
+        }
+
+        applicationsList.innerHTML = "";
+
+        try {
+            // Request only the logged-in student's applications.
+            if (typeof apiGet !== "function") {
+                throw new Error(
+                    "API service is unavailable. Please check applications.html script imports."
+                );
+            }
+
+            const response = await apiGet("/applications/my");
+
+            if (!response || response.success !== true) {
+                throw new Error(
+                    response?.message ||
+                    "Unable to retrieve your applications."
+                );
+            }
+
+            // Never display non-array API data as applications.
+            if (!Array.isArray(response.applications)) {
+                throw new Error(
+                    "The server returned an invalid applications response."
+                );
+            }
+
+            // Save real records and refresh the interface.
+            applications = response.applications;
+
+            renderApplications();
+
+            console.log(
+                "ScholarBridge: Applications loaded successfully.",
+                applications.length
+            );
+
+        } catch (error) {
+            console.error(
+                "ScholarBridge: Failed to load applications:",
+                error
+            );
+
+            updateStatistics();
+
+            if (applicationCount) {
+                applicationCount.textContent = "Applications unavailable";
+            }
+
+            showEmptyState(
+                "Unable to Load Applications",
+                error.message ||
+                "Please check your connection and try again."
+            );
+        }
+    }
+
+    // -----------------------------------------------------
+    // INITIALIZE APPLICATIONS PAGE
     // -----------------------------------------------------
 
     renderApplications();
 
-    // -----------------------------------------------------
-    // FUTURE BACKEND INTEGRATION
-    // -----------------------------------------------------
+    loadMyApplications();
 
-    /*
-     * Next step:
-     * 1. Read the logged-in user's authentication token.
-     * 2. Request that user's applications from the backend.
-     * 3. Validate the API response.
-     * 4. Assign the returned applications to the array.
-     * 5. Call renderApplications().
-     *
-     * Do not add sample applications to the production UI.
-     */
 });

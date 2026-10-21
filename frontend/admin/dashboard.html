@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#14532d">
+    <title>Admin Dashboard | ScholarBridge AI</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar" id="sidebar">
+        <a class="brand" href="dashboard.html">
+            <span class="logo">SB</span>
+            <span>ScholarBridge<small>ADMIN CONSOLE</small></span>
+        </a>
+
+        <nav>
+            <button class="nav-item active" data-view="overview">▦ Overview</button>
+            <button class="nav-item" data-view="scholarships">▤ Scholarships</button>
+            <button class="nav-item" data-view="applications">▣ Applications</button>
+            <button class="nav-item" data-view="documents">▧ Document Review</button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div>
+                <strong id="adminName">Administrator</strong>
+                <small>Admin account</small>
+            </div>
+            <button id="logoutButton" class="btn secondary">Logout</button>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <button id="menuButton" class="btn secondary mobile-menu">☰</button>
+            <div>
+                <p class="eyebrow">ADMINISTRATION</p>
+                <h1 id="pageTitle">Overview</h1>
+            </div>
+            <button id="refreshButton" class="btn secondary">↻ Refresh</button>
+        </header>
+
+        <p id="globalMessage" role="status"></p>
+
+        <!-- OVERVIEW -->
+        <section class="view active" id="view-overview">
+            <div class="welcome">
+                <p class="eyebrow">SCHOLARSHIP OPERATIONS</p>
+                <h2>Welcome to your admin workspace</h2>
+                <p>Manage scholarship listings, review applications and monitor progress.</p>
+            </div>
+
+            <div class="stats">
+                <article class="stat">
+                    <span>Total scholarships</span>
+                    <strong id="statScholarships">0</strong>
+                </article>
+                <article class="stat">
+                    <span>Total applications</span>
+                    <strong id="statApplications">0</strong>
+                </article>
+                <article class="stat">
+                    <span>Pending review</span>
+                    <strong id="statPending">0</strong>
+                </article>
+                <article class="stat">
+                    <span>Approved</span>
+                    <strong id="statApproved">0</strong>
+                </article>
+            </div>
+
+            <div class="panel">
+                <h2>Recent applications</h2>
+                <div id="recentApplications" class="table-wrap"></div>
+            </div>
+        </section>
+
+        <!-- SCHOLARSHIPS -->
+        <section class="view" id="view-scholarships">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Scholarship management</h2>
+                        <p class="muted">Create and manage scholarship listings.</p>
+                    </div>
+                    <button id="addScholarshipButton" class="btn primary">
+                        + Add Scholarship
+                    </button>
+                </div>
+                <div id="scholarshipTable" class="table-wrap"></div>
+            </div>
+        </section>
+
+        <!-- APPLICATIONS -->
+        <section class="view" id="view-applications">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Student applications</h2>
+                        <p class="muted">Review applications and update their status.</p>
+                    </div>
+                    <input id="applicationSearch" type="search"
+                           placeholder="Search applications...">
+                </div>
+                <div id="applicationTable" class="table-wrap"></div>
+            </div>
+        </section>
+
+        <!-- DOCUMENTS -->
+        <section class="view" id="view-documents">
+            <div class="panel">
+                <h2>Document review</h2>
+                <p class="muted">
+                    Review the document information returned by the backend.
+                    This page does not automatically verify document authenticity.
+                </p>
+                <div id="documentTable" class="table-wrap"></div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- ADD / EDIT SCHOLARSHIP -->
+<dialog id="scholarshipDialog">
+    <form id="scholarshipForm">
+        <div class="panel-heading">
+            <h2 id="dialogTitle">Add Scholarship</h2>
+            <button type="button" id="closeDialog" class="btn secondary">✕</button>
+        </div>
+
+        <input type="hidden" id="scholarshipId">
+
+        <label for="title">Scholarship title *</label>
+        <input id="title" required maxlength="160">
+
+        <label for="provider">Provider / organization</label>
+        <input id="provider" maxlength="160">
+
+        <label for="category">Category</label>
+        <input id="category" maxlength="100">
+
+        <label for="educationLevel">Education level</label>
+        <input id="educationLevel" maxlength="100">
+
+        <label for="amount">Award amount</label>
+        <input id="amount" maxlength="80">
+
+        <label for="deadline">Deadline</label>
+        <input id="deadline" type="date">
+
+        <label for="status">Status</label>
+        <select id="status">
+            <option>Active</option>
+            <option>Pending</option>
+            <option>Inactive</option>
+            <option>Closed</option>
+        </select>
+
+        <label for="description">Description *</label>
+        <textarea id="description" rows="4" required></textarea>
+
+        <label for="eligibility">Eligibility criteria</label>
+        <textarea id="eligibility" rows="3"></textarea>
+
+        <label for="requiredDocuments">Required documents (comma-separated)</label>
+        <input id="requiredDocuments">
+
+        <label for="applicationUrl">Application URL</label>
+        <input id="applicationUrl" type="url" placeholder="https://...">
+
+        <p id="scholarshipMessage" role="status"></p>
+
+        <button class="btn primary full" id="saveScholarshipButton" type="submit">
+            Save Scholarship
+        </button>
+    </form>
+</dialog>
+
+<script src="admin.js"></script>
+</body>
+</html>

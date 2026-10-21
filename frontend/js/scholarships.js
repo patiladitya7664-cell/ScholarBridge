@@ -1,15 +1,24 @@
-/* =====================================================
-   SCHOLARBRIDGE - SCHOLARSHIPS PAGE
-   Frontend JavaScript
-===================================================== */
-
 "use strict";
+
+/* =====================================================
+   SCHOLARBRIDGE AI
+   File: frontend/js/scholarships.js
+
+   Features:
+   1. Load active scholarships from the backend.
+   2. Normalize API data for frontend cards.
+   3. Search scholarships.
+   4. Filter by category and education level.
+   5. Display scholarship details.
+   6. Check application deadlines.
+   7. Handle loading, empty and error states.
+===================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ================================================
+    // =================================================
     // 1. DOM ELEMENTS
-    // ================================================
+    // =================================================
 
     const searchInput = document.getElementById("scholarshipSearch");
     const categoryFilter = document.getElementById("categoryFilter");
@@ -26,217 +35,248 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (!scholarshipGrid) {
-        console.error("ScholarBridge: Scholarship grid not found.");
+        console.error(
+            "ScholarBridge: Scholarship grid was not found."
+        );
         return;
     }
 
-    // ================================================
-    // 2. DEMO SCHOLARSHIP DATA
-    // Frontend demo data. Backend integration later.
-    // Verify eligibility and deadlines before applying.
-    // ================================================
+    // =================================================
+    // 2. STATE
+    // =================================================
 
-    const scholarships = [
-        {
-            id: "SB001",
-            name: "National Merit Scholarship",
-            provider: "ScholarBridge Demo Listing",
-            category: "merit",
-            education: "undergraduate",
-            amount: "₹10,000",
-            deadline: "2027-03-31",
-            eligibility: "Students with strong academic performance.",
-            description: "A demonstration listing for students exploring merit-based financial support.",
-            icon: "fa-award"
-        },
-        {
-            id: "SB002",
-            name: "Student Financial Support",
-            provider: "ScholarBridge Demo Listing",
-            category: "need",
-            education: "undergraduate",
-            amount: "₹15,000",
-            deadline: "2027-04-15",
-            eligibility: "Students who need financial assistance for education.",
-            description: "A demonstration listing focused on educational financial assistance.",
-            icon: "fa-hand-holding-heart"
-        },
-        {
-            id: "SB003",
-            name: "School Education Scholarship",
-            provider: "ScholarBridge Demo Listing",
-            category: "government",
-            education: "school",
-            amount: "₹5,000",
-            deadline: "2027-02-28",
-            eligibility: "School students meeting the relevant scheme requirements.",
-            description: "A sample opportunity for students continuing their school education.",
-            icon: "fa-school"
-        },
-        {
-            id: "SB004",
-            name: "Private Excellence Award",
-            provider: "ScholarBridge Demo Listing",
-            category: "private",
-            education: "undergraduate",
-            amount: "₹20,000",
-            deadline: "2027-05-20",
-            eligibility: "Undergraduate students who meet the award criteria.",
-            description: "A demonstration listing for a private educational award.",
-            icon: "fa-star"
-        },
-        {
-            id: "SB005",
-            name: "Postgraduate Research Support",
-            provider: "ScholarBridge Demo Listing",
-            category: "merit",
-            education: "postgraduate",
-            amount: "₹25,000",
-            deadline: "2027-06-15",
-            eligibility: "Postgraduate students pursuing further study or research.",
-            description: "A sample listing for postgraduate students.",
-            icon: "fa-book-open"
-        },
-        {
-            id: "SB006",
-            name: "Inclusive Education Support",
-            provider: "ScholarBridge Demo Listing",
-            category: "minority",
-            education: "undergraduate",
-            amount: "₹12,000",
-            deadline: "2027-04-30",
-            eligibility: "Students who meet the applicable scheme eligibility criteria.",
-            description: "A demonstration listing for an inclusive education support program.",
-            icon: "fa-people-group"
-        },
-        {
-            id: "SB007",
-            name: "Doctoral Research Grant",
-            provider: "ScholarBridge Demo Listing",
-            category: "merit",
-            education: "doctoral",
-            amount: "₹30,000",
-            deadline: "2027-07-15",
-            eligibility: "Doctoral students meeting the relevant grant criteria.",
-            description: "A sample listing for students pursuing doctoral research.",
-            icon: "fa-flask"
-        },
-        {
-            id: "SB008",
-            name: "Higher Education Assistance",
-            provider: "ScholarBridge Demo Listing",
-            category: "government",
-            education: "postgraduate",
-            amount: "₹18,000",
-            deadline: "2027-05-10",
-            eligibility: "Postgraduate students meeting the applicable requirements.",
-            description: "A demonstration listing for higher education assistance.",
-            icon: "fa-graduation-cap"
-        },
-        {
-            id: "SB009",
-            name: "School Achievement Award",
-            provider: "ScholarBridge Demo Listing",
-            category: "private",
-            education: "school",
-            amount: "₹7,500",
-            deadline: "2027-03-15",
-            eligibility: "School students who satisfy the award criteria.",
-            description: "A sample award for students demonstrating academic achievement.",
-            icon: "fa-medal"
-        }
-    ];
+    let scholarships = [];
+    let isLoadingScholarships = false;
 
-    // ================================================
+    // =================================================
     // 3. HELPER FUNCTIONS
-    // ================================================
+    // =================================================
 
     function escapeHTML(value) {
-        return String(value ?? "").replace(/[&<>"']/g, character => {
-            const entities = {
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#39;"
-            };
+        const entities = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        };
 
-            return entities[character];
-        });
+        return String(value ?? "").replace(
+            /[&<>"']/g,
+            character => entities[character]
+        );
     }
 
-    function formatDate(dateString) {
-        if (!dateString) {
-            return "Not specified";
+    function parseDate(dateValue) {
+        if (!dateValue) {
+            return null;
         }
 
-        const date = new Date(`${dateString}T00:00:00`);
+        // Handles ISO strings and ordinary date values.
+        const date = new Date(dateValue);
 
         if (Number.isNaN(date.getTime())) {
+            return null;
+        }
+
+        return date;
+    }
+
+    function formatDate(dateValue) {
+        const date = parseDate(dateValue);
+
+        if (!date) {
             return "Not specified";
         }
 
         return date.toLocaleDateString("en-IN", {
             day: "numeric",
             month: "short",
-            year: "numeric"
+            year: "numeric",
+            timeZone: "UTC"
         });
+    }
+
+    function getDaysRemaining(deadline) {
+        const date = parseDate(deadline);
+
+        if (!date) {
+            return null;
+        }
+
+        const today = new Date();
+
+        today.setHours(0, 0, 0, 0);
+
+        const lastDate = new Date(
+            date.getUTCFullYear(),
+            date.getUTCMonth(),
+            date.getUTCDate()
+        );
+
+        return Math.round(
+            (lastDate.getTime() - today.getTime()) /
+            (24 * 60 * 60 * 1000)
+        );
     }
 
     function formatCategory(category) {
         const labels = {
             merit: "Merit-Based",
+            "merit-based": "Merit-Based",
             need: "Need-Based",
+            "need-based": "Need-Based",
             government: "Government",
+            govt: "Government",
             private: "Private",
             minority: "Minority"
         };
 
-        return labels[category] || "Scholarship";
+        const key = String(category || "")
+            .trim()
+            .toLowerCase();
+
+        return labels[key] || (
+            key
+                ? key.replace(/[-_]/g, " ").replace(/\b\w/g, char => char.toUpperCase())
+                : "Scholarship"
+        );
     }
 
     function formatEducation(education) {
         const labels = {
             school: "School",
+            "school-level": "School",
             undergraduate: "Undergraduate",
+            "under graduate": "Undergraduate",
+            ug: "Undergraduate",
             postgraduate: "Postgraduate",
-            doctoral: "Doctoral"
+            "post graduate": "Postgraduate",
+            pg: "Postgraduate",
+            doctoral: "Doctoral",
+            doctorate: "Doctoral",
+            phd: "Doctoral",
+            all: "All Levels"
         };
 
-        return labels[education] || "All Levels";
-    }
-
-    function getDaysRemaining(deadline) {
-        if (!deadline) {
-            return null;
-        }
-
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        const lastDate = new Date(`${deadline}T00:00:00`);
-
-        if (Number.isNaN(lastDate.getTime())) {
-            return null;
-        }
-
-        return Math.ceil(
-            (lastDate.getTime() - today.getTime()) /
-            (1000 * 60 * 60 * 24)
-        );
-    }
-
-    // ================================================
-    // 4. FILTER SCHOLARSHIPS
-    // ================================================
-
-    function getFilteredScholarships() {
-        const searchTerm = (searchInput?.value || "")
+        const key = String(education || "")
             .trim()
             .toLowerCase();
 
-        const selectedCategory = categoryFilter?.value || "all";
-        const selectedEducation = educationFilter?.value || "all";
+        return labels[key] || (
+            key
+                ? key.replace(/[-_]/g, " ").replace(/\b\w/g, char => char.toUpperCase())
+                : "All Levels"
+        );
+    }
+
+    function formatAmount(item) {
+        const value = item.amount ?? item.awardAmount;
+
+        if (
+            value === null ||
+            value === undefined ||
+            value === ""
+        ) {
+            return "Amount not specified";
+        }
+
+        const amount = Number(value);
+
+        if (!Number.isFinite(amount)) {
+            return "Amount not specified";
+        }
+
+        return new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+            maximumFractionDigits: 0
+        }).format(amount);
+    }
+
+    // =================================================
+    // 4. NORMALIZE BACKEND DATA
+    // =================================================
+
+    function normalizeScholarship(item) {
+        const category = String(
+            item.category || "other"
+        ).trim().toLowerCase();
+
+        const education = String(
+            item.educationLevel || "all"
+        ).trim().toLowerCase();
+
+        return {
+            id: String(
+                item.scholarshipId ||
+                item._id ||
+                item.id ||
+                ""
+            ),
+
+            name: String(
+                item.title ||
+                item.name ||
+                "Untitled Scholarship"
+            ),
+
+            provider: String(
+                item.provider ||
+                item.organization ||
+                "Provider not specified"
+            ),
+
+            category,
+            education,
+
+            amount: formatAmount(item),
+
+            deadline: item.deadline || null,
+
+            eligibility: String(
+                item.eligibility ||
+                item.eligibilityCriteria ||
+                "Please check the official eligibility requirements."
+            ),
+
+            description: String(
+                item.description ||
+                "Scholarship description is not available."
+            ),
+
+            applicationUrl: String(
+                item.applicationUrl ||
+                item.website ||
+                ""
+            ),
+
+            requiredDocuments: Array.isArray(item.requiredDocuments)
+                ? item.requiredDocuments
+                : [],
+
+            status: String(item.status || "Active"),
+
+            icon: "fa-award"
+        };
+    }
+
+    // =================================================
+    // 5. FILTER SCHOLARSHIPS
+    // =================================================
+
+    function getFilteredScholarships() {
+        const searchTerm = (
+            searchInput?.value || ""
+        ).trim().toLowerCase();
+
+        const selectedCategory = (
+            categoryFilter?.value || "all"
+        ).trim().toLowerCase();
+
+        const selectedEducation = (
+            educationFilter?.value || "all"
+        ).trim().toLowerCase();
 
         return scholarships.filter(scholarship => {
 
@@ -249,7 +289,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 scholarship.education
             ].join(" ").toLowerCase();
 
-            const matchesSearch = searchableText.includes(searchTerm);
+            const matchesSearch =
+                searchableText.includes(searchTerm);
 
             const matchesCategory =
                 selectedCategory === "all" ||
@@ -267,12 +308,43 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ================================================
-    // 5. CREATE SCHOLARSHIP CARD
-    // ================================================
+    // =================================================
+    // 6. EMPTY STATE
+    // =================================================
+
+    function showEmptyState(title, message) {
+        if (!emptyState) {
+            return;
+        }
+
+        emptyState.hidden = false;
+
+        const heading = emptyState.querySelector("h3");
+        const paragraph = emptyState.querySelector("p");
+
+        if (heading) {
+            heading.textContent = title;
+        }
+
+        if (paragraph) {
+            paragraph.textContent = message;
+        }
+    }
+
+    function hideEmptyState() {
+        if (emptyState) {
+            emptyState.hidden = true;
+        }
+    }
+
+    // =================================================
+    // 7. CREATE SCHOLARSHIP CARD
+    // =================================================
 
     function createScholarshipCard(scholarship) {
-        const daysRemaining = getDaysRemaining(scholarship.deadline);
+        const daysRemaining = getDaysRemaining(
+            scholarship.deadline
+        );
 
         let deadlineText = "Deadline not specified";
 
@@ -291,7 +363,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? "deadline-expired"
                 : "";
 
-        const canApply = daysRemaining === null || daysRemaining >= 0;
+        const canApply =
+            daysRemaining === null || daysRemaining >= 0;
 
         return `
             <article class="scholarship-card">
@@ -388,12 +461,17 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    // ================================================
-    // 6. DISPLAY SCHOLARSHIPS
-    // ================================================
+    // =================================================
+    // 8. RENDER SCHOLARSHIPS
+    // =================================================
 
     function renderScholarships() {
-        const filteredScholarships = getFilteredScholarships();
+        if (isLoadingScholarships) {
+            return;
+        }
+
+        const filteredScholarships =
+            getFilteredScholarships();
 
         scholarshipGrid.innerHTML = "";
 
@@ -403,25 +481,115 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (filteredScholarships.length === 0) {
-            if (emptyState) {
-                emptyState.hidden = false;
-            }
+            showEmptyState(
+                scholarships.length === 0
+                    ? "No Scholarships Available"
+                    : "No Matching Scholarships",
+                scholarships.length === 0
+                    ? "No active scholarships are currently listed. Please check again later."
+                    : "Try changing your search or filters to find scholarships."
+            );
 
             return;
         }
 
-        if (emptyState) {
-            emptyState.hidden = true;
-        }
+        hideEmptyState();
 
         scholarshipGrid.innerHTML = filteredScholarships
             .map(createScholarshipCard)
             .join("");
     }
 
-    // ================================================
-    // 7. CLEAR FILTERS
-    // ================================================
+    // =================================================
+    // 9. LOAD SCHOLARSHIPS FROM BACKEND
+    // =================================================
+
+    async function loadScholarships() {
+        if (isLoadingScholarships) {
+            return;
+        }
+
+        isLoadingScholarships = true;
+
+        scholarshipGrid.innerHTML = "";
+
+        if (scholarshipCount) {
+            scholarshipCount.textContent =
+                "Loading scholarships...";
+        }
+
+        showEmptyState(
+            "Loading Scholarships...",
+            "Please wait while we retrieve available scholarships."
+        );
+
+        try {
+            if (typeof apiGet !== "function") {
+                throw new Error(
+                    "API service is unavailable. Check scholarships.html script imports."
+                );
+            }
+
+            const response = await apiGet(
+                "/scholarships?status=Active&limit=100"
+            );
+
+            if (
+                !response ||
+                response.success !== true ||
+                !Array.isArray(response.scholarships)
+            ) {
+                throw new Error(
+                    response?.message ||
+                    "The server returned an invalid scholarship response."
+                );
+            }
+
+            scholarships = response.scholarships
+                .map(normalizeScholarship)
+                .filter(scholarship => (
+                    scholarship.id && scholarship.name
+                ));
+
+            console.log(
+                "ScholarBridge: Loaded active scholarships:",
+                scholarships.length
+            );
+
+        } catch (error) {
+            console.error(
+                "ScholarBridge: Failed to load scholarships:",
+                error
+            );
+
+            scholarships = [];
+
+            scholarshipGrid.innerHTML = "";
+
+            if (scholarshipCount) {
+                scholarshipCount.textContent =
+                    "Scholarships unavailable";
+            }
+
+            showEmptyState(
+                "Unable to Load Scholarships",
+                error.message ||
+                "Please check your connection and try again."
+            );
+
+        } finally {
+            isLoadingScholarships = false;
+        }
+
+        // Render only after loading has completed.
+        if (scholarshipCount?.textContent !== "Scholarships unavailable") {
+            renderScholarships();
+        }
+    }
+
+    // =================================================
+    // 10. CLEAR FILTERS
+    // =================================================
 
     function clearFilters() {
         if (searchInput) {
@@ -439,9 +607,9 @@ document.addEventListener("DOMContentLoaded", () => {
         renderScholarships();
     }
 
-    // ================================================
-    // 8. SCHOLARSHIP DETAILS
-    // ================================================
+    // =================================================
+    // 11. SCHOLARSHIP DETAILS
+    // =================================================
 
     function showScholarshipDetails(scholarship) {
         const details = [
@@ -457,74 +625,103 @@ document.addEventListener("DOMContentLoaded", () => {
             "",
             scholarship.description,
             "",
-            "This is demonstration content. Verify the official scholarship details before applying."
+            scholarship.applicationUrl
+                ? `Official application website: ${scholarship.applicationUrl}`
+                : "Official application website not provided."
         ].join("\n");
 
         window.alert(details);
     }
 
-    // ================================================
-    // 9. APPLY NOW
-    // ================================================
+    
+// ================================================
+// APPLY FOR SCHOLARSHIP
+// ================================================
 
-    function applyForScholarship(scholarship) {
-        const token =
-            localStorage.getItem("token") ||
-            localStorage.getItem("scholarBridgeToken") ||
-            localStorage.getItem("scholarSetuToken");
+function applyForScholarship(scholarship) {
+    if (!scholarship || !scholarship.id) {
+        alert("Scholarship information is missing.");
+        return;
+    }
 
-        if (!token) {
-            const shouldLogin = window.confirm(
-                "Please log in to continue with your application. Open the login page?"
-            );
+    const token =
+        localStorage.getItem("token") ||
+        localStorage.getItem("scholarBridgeToken") ||
+        localStorage.getItem("authToken") ||
+        localStorage.getItem("jwtToken");
 
-            if (shouldLogin) {
-                window.location.href = "login.html";
-            }
+    if (!token) {
+        const shouldLogin = confirm(
+            "Please log in before applying for a scholarship."
+        );
 
-            return;
+        if (shouldLogin) {
+            window.location.href =
+                "login.html?redirect=" +
+                encodeURIComponent(
+                    "apply.html?id=" + scholarship.id
+                );
         }
 
-        const daysRemaining = getDaysRemaining(scholarship.deadline);
+        return;
+    }
 
-        if (daysRemaining !== null && daysRemaining < 0) {
-            window.alert("The deadline for this scholarship has passed.");
-            return;
-        }
+    const daysRemaining = getDaysRemaining(scholarship.deadline);
 
-        window.alert(
-            "ScholarBridge application system\n\n" +
-            `Scholarship: ${scholarship.name}\n\n` +
-            "The application submission feature will be connected when the backend is ready."
+    if (daysRemaining !== null && daysRemaining < 0) {
+        alert("The deadline for this scholarship has passed.");
+        return;
+    }
+
+    window.location.href =
+        "apply.html?id=" +
+        encodeURIComponent(scholarship.id);
+}
+
+
+    // =================================================
+    // 13. EVENT LISTENERS
+    // =================================================
+
+    if (searchInput) {
+        searchInput.addEventListener(
+            "input",
+            renderScholarships
         );
     }
 
-    // ================================================
-    // 10. EVENT LISTENERS
-    // ================================================
-
-    if (searchInput) {
-        searchInput.addEventListener("input", renderScholarships);
-    }
-
     if (categoryFilter) {
-        categoryFilter.addEventListener("change", renderScholarships);
+        categoryFilter.addEventListener(
+            "change",
+            renderScholarships
+        );
     }
 
     if (educationFilter) {
-        educationFilter.addEventListener("change", renderScholarships);
+        educationFilter.addEventListener(
+            "change",
+            renderScholarships
+        );
     }
 
     if (clearFiltersButton) {
-        clearFiltersButton.addEventListener("click", clearFilters);
+        clearFiltersButton.addEventListener(
+            "click",
+            clearFilters
+        );
     }
 
     if (emptyStateReset) {
-        emptyStateReset.addEventListener("click", clearFilters);
+        emptyStateReset.addEventListener(
+            "click",
+            clearFilters
+        );
     }
 
     scholarshipGrid.addEventListener("click", event => {
-        const button = event.target.closest("button[data-action]");
+        const button = event.target.closest(
+            "button[data-action]"
+        );
 
         if (!button || button.disabled) {
             return;
@@ -547,11 +744,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ================================================
-    // 11. INITIALIZE PAGE
-    // ================================================
+    // =================================================
+    // 14. INITIALIZE PAGE
+    // =================================================
 
-    renderScholarships();
+    loadScholarships();
 
-    console.log("ScholarBridge scholarships page initialized.");
+    console.log(
+        "ScholarBridge AI: Scholarships page initialized."
+    );
+
 });

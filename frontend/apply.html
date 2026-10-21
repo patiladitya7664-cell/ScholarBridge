@@ -1,0 +1,293 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apply for Scholarship | ScholarBridge AI</title>
+
+    <meta
+        name="description"
+        content="Apply for scholarships through ScholarBridge AI."
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/apply.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body class="apply-page">
+
+    <header class="apply-header">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </span>
+            <span>ScholarBridge <strong>AI</strong></span>
+        </a>
+
+        <a href="scholarships.html" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Scholarships
+        </a>
+    </header>
+
+    <main class="apply-container">
+
+        <section class="apply-intro">
+            <span class="eyebrow">YOUR FUTURE STARTS HERE</span>
+
+            <h1>Scholarship Application</h1>
+
+            <p>
+                Complete your details carefully and submit your
+                application for review.
+            </p>
+        </section>
+
+        <section class="selected-scholarship" id="scholarshipCard">
+            <div class="scholarship-icon">
+                <i class="fa-solid fa-award"></i>
+            </div>
+
+            <div class="scholarship-info">
+                <span class="section-label">APPLYING FOR</span>
+                <h2 id="scholarshipName">Loading scholarship...</h2>
+                <p id="scholarshipProvider"></p>
+                <p id="scholarshipAmount"></p>
+            </div>
+        </section>
+
+        <div
+            id="pageMessage"
+            class="form-message"
+            role="status"
+            aria-live="polite"
+            hidden
+        ></div>
+
+        <form id="applicationForm" novalidate>
+
+            <!-- Personal Information -->
+            <section class="form-section">
+
+                <div class="section-heading">
+                    <span class="step-number">01</span>
+
+                    <div>
+                        <h2>Personal Information</h2>
+                        <p>Enter your current contact details.</p>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number *</label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            name="mobile"
+                            placeholder="10-digit mobile number"
+                            inputmode="numeric"
+                            maxlength="10"
+                            autocomplete="tel"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+
+                        <select id="category" name="category">
+                            <option value="">Select category</option>
+                            <option value="General">General</option>
+                            <option value="OBC">OBC</option>
+                            <option value="SC">SC</option>
+                            <option value="ST">ST</option>
+                            <option value="EWS">EWS</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="address">Residential Address</label>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            rows="3"
+                            placeholder="Enter your residential address"
+                        ></textarea>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="form-section">
+
+                <div class="section-heading">
+                    <span class="step-number">02</span>
+
+                    <div>
+                        <h2>Education Details</h2>
+                        <p>Tell us about your current education.</p>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="course">Course / Degree *</label>
+
+                        <input
+                            type="text"
+                            id="course"
+                            name="course"
+                            placeholder="e.g. B.Tech Computer Science"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="institution">College / Institution *</label>
+
+                        <input
+                            type="text"
+                            id="institution"
+                            name="institution"
+                            placeholder="Enter institution name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="academicYear">Academic Year *</label>
+
+                        <select id="academicYear" name="academicYear" required>
+                            <option value="">Select academic year</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                            <option value="5th Year">5th Year</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="familyIncome">Annual Family Income</label>
+
+                        <select id="familyIncome" name="familyIncome">
+                            <option value="">Select income range</option>
+                            <option value="Below ₹1 lakh">Below ₹1 lakh</option>
+                            <option value="₹1–2.5 lakh">₹1–2.5 lakh</option>
+                            <option value="₹2.5–5 lakh">₹2.5–5 lakh</option>
+                            <option value="₹5–8 lakh">₹5–8 lakh</option>
+                            <option value="Above ₹8 lakh">Above ₹8 lakh</option>
+                        </select>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Application Purpose -->
+            <section class="form-section">
+
+                <div class="section-heading">
+                    <span class="step-number">03</span>
+
+                    <div>
+                        <h2>Application Statement</h2>
+                        <p>Explain why you are applying for this scholarship.</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="purpose">Why do you need this scholarship? *</label>
+
+                    <textarea
+                        id="purpose"
+                        name="purpose"
+                        rows="5"
+                        minlength="20"
+                        placeholder="Explain your educational goals, financial needs and how this scholarship will help you."
+                        required
+                    ></textarea>
+
+                    <small>Write at least 20 characters.</small>
+                </div>
+
+            </section>
+
+            <!-- Declaration -->
+            <section class="declaration-box">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="declaration" required>
+
+                    <span>
+                        I confirm that the information provided in this
+                        application is accurate to the best of my knowledge.
+                    </span>
+                </label>
+            </section>
+
+            <div class="form-actions">
+                <a href="scholarships.html" class="btn-secondary">
+                    Cancel
+                </a>
+
+                <button type="submit" id="submitApplication" class="btn-primary">
+                    <span>Submit Application</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+        </form>
+
+    </main>
+
+    <footer class="apply-footer">
+        <p>
+            &copy; <span id="currentYear"></span>
+            ScholarBridge AI. Empowering students through education.
+        </p>
+    </footer>
+
+    <script src="js/services/api.js"></script>
+    <script src="js/services/authService.js"></script>
+    <script src="js/apply.js"></script>
+
+</body>
+</html>

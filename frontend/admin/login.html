@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#14532d">
+    <title>Admin Login | ScholarBridge AI</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="login-page">
+
+<main class="login-card">
+    <div class="logo">SB</div>
+    <p class="eyebrow">SCHOLARBRIDGE AI</p>
+    <h1>Admin Portal</h1>
+    <p class="muted">Sign in to manage scholarships and student applications.</p>
+
+    <form id="adminLoginForm">
+        <label for="email">Email address</label>
+        <input id="email" type="email" autocomplete="username" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password"
+               autocomplete="current-password" required>
+
+        <p id="loginMessage" role="status"></p>
+
+        <button class="btn primary full" id="loginButton" type="submit">
+            Sign in securely
+        </button>
+    </form>
+
+    <p class="muted small">
+        Restricted access. Only authorized administrator accounts can enter.
+    </p>
+</main>
+
+<script src="login.js"></script>
+</body>
+</html>

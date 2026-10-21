@@ -1,0 +1,439 @@
+/* =====================================================
+   ScholarBridge AI
+   Scholarship Application Page
+   File: css/apply.css
+===================================================== */
+
+:root {
+    --apply-primary: #176b45;
+    --apply-primary-dark: #105536;
+    --apply-primary-light: #eaf6ef;
+    --apply-text: #1e293b;
+    --apply-muted: #64748b;
+    --apply-border: #e2e8f0;
+    --apply-background: #f7faf8;
+    --apply-white: #ffffff;
+    --apply-danger: #b42318;
+    --apply-success: #167447;
+    --apply-radius: 14px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.apply-page {
+    margin: 0;
+    background: var(--apply-background);
+    color: var(--apply-text);
+    font-family: "Poppins", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.apply-page a {
+    text-decoration: none;
+}
+
+.apply-header {
+    min-height: 76px;
+    padding: 16px 6%;
+    background: var(--apply-white);
+    border-bottom: 1px solid var(--apply-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--apply-text);
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.brand strong {
+    color: var(--apply-primary);
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--apply-primary-light);
+    color: var(--apply-primary);
+    font-size: 20px;
+}
+
+.back-link {
+    color: var(--apply-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.back-link i {
+    margin-right: 7px;
+}
+
+.apply-container {
+    width: min(920px, 92%);
+    margin: 42px auto;
+}
+
+.apply-intro {
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--apply-primary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.apply-intro h1 {
+    margin: 0 0 10px;
+    font-size: clamp(27px, 4vw, 38px);
+    line-height: 1.25;
+}
+
+.apply-intro p {
+    margin: 0;
+    color: var(--apply-muted);
+    font-size: 15px;
+}
+
+.selected-scholarship {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px;
+    margin-bottom: 24px;
+    background: var(--apply-white);
+    border: 1px solid #d8eadd;
+    border-radius: var(--apply-radius);
+    box-shadow: 0 5px 20px rgba(15, 70, 40, 0.04);
+}
+
+.scholarship-icon {
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    background: var(--apply-primary-light);
+    border-radius: 14px;
+    color: var(--apply-primary);
+    font-size: 25px;
+}
+
+.scholarship-info {
+    min-width: 0;
+}
+
+.section-label {
+    color: var(--apply-primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.scholarship-info h2 {
+    margin: 4px 0;
+    font-size: 19px;
+    overflow-wrap: anywhere;
+}
+
+.scholarship-info p {
+    margin: 3px 0;
+    color: var(--apply-muted);
+    font-size: 13px;
+}
+
+#applicationForm {
+    display: grid;
+    gap: 22px;
+}
+
+.form-section {
+    padding: 28px;
+    background: var(--apply-white);
+    border: 1px solid var(--apply-border);
+    border-radius: var(--apply-radius);
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.025);
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    background: var(--apply-primary-light);
+    color: var(--apply-primary);
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.section-heading h2 {
+    margin: 0 0 4px;
+    font-size: 19px;
+}
+
+.section-heading p {
+    margin: 0;
+    color: var(--apply-muted);
+    font-size: 13px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 21px 18px;
+}
+
+.form-group {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    min-height: 47px;
+    padding: 12px 14px;
+    border: 1px solid #d7e0da;
+    border-radius: 9px;
+    background: #fff;
+    color: var(--apply-text);
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--apply-primary);
+    box-shadow: 0 0 0 3px rgba(23, 107, 69, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+.form-group small {
+    color: var(--apply-muted);
+    font-size: 12px;
+}
+
+.declaration-box {
+    padding: 20px;
+    border: 1px solid var(--apply-border);
+    border-radius: 12px;
+    background: var(--apply-white);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #475569;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    accent-color: var(--apply-primary);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 15px;
+}
+
+.btn-primary,
+.btn-secondary {
+    min-height: 47px;
+    padding: 12px 21px;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-primary {
+    border: 1px solid var(--apply-primary);
+    background: var(--apply-primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--apply-primary-dark);
+}
+
+.btn-secondary {
+    border: 1px solid var(--apply-border);
+    background: #fff;
+    color: var(--apply-text);
+}
+
+.btn-secondary:hover {
+    background: #f1f5f9;
+}
+
+.btn-primary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.form-message {
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+.form-message[hidden] {
+    display: none;
+}
+
+.form-message.error {
+    color: var(--apply-danger);
+    background: #fff1f0;
+    border: 1px solid #ffd4d0;
+}
+
+.form-message.success {
+    color: var(--apply-success);
+    background: #edfaf2;
+    border: 1px solid #c4ead2;
+}
+
+.form-message.info {
+    color: #1d4ed8;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+}
+
+.apply-footer {
+    padding: 24px 15px;
+    border-top: 1px solid var(--apply-border);
+    background: #fff;
+    text-align: center;
+}
+
+.apply-footer p {
+    margin: 0;
+    color: var(--apply-muted);
+    font-size: 12px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 650px) {
+    .apply-header {
+        padding: 14px 5%;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .apply-container {
+        width: 92%;
+        margin: 28px auto;
+    }
+
+    .selected-scholarship {
+        padding: 17px;
+        align-items: flex-start;
+        gap: 13px;
+    }
+
+    .scholarship-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .scholarship-info h2 {
+        font-size: 16px;
+    }
+
+    .form-section {
+        padding: 20px 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .section-heading h2 {
+        font-size: 17px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+}
